@@ -4,6 +4,10 @@
  */
 package UI;
 
+import Doctor.doctorHistory;
+import Patient.patientHistory;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author kai
@@ -13,6 +17,13 @@ public class loginFrame extends javax.swing.JFrame {
     /**
      * Creates new form loginFrame
      */
+    patientHistory pHistory;
+    doctorHistory dHistory;
+    //adminHistory aHistory;
+    sysAdmin sysAdminFrame=new sysAdmin();
+    
+    
+    
     public loginFrame() {
         initComponents();
     }
@@ -30,7 +41,7 @@ public class loginFrame extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        identityBox = new javax.swing.JComboBox<>();
+        idBox = new javax.swing.JComboBox<>();
         txtUser = new javax.swing.JTextField();
         pwPassword = new javax.swing.JPasswordField();
         clrBtn = new javax.swing.JButton();
@@ -52,10 +63,10 @@ public class loginFrame extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 24)); // NOI18N
         jLabel4.setText("Select Your Identity");
 
-        identityBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor", "System Admin", "Community Admin", "Hospital Admin", " " }));
-        identityBox.addActionListener(new java.awt.event.ActionListener() {
+        idBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor", "System Admin", "Community Admin", "Hospital Admin", " " }));
+        idBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                identityBoxActionPerformed(evt);
+                idBoxActionPerformed(evt);
             }
         });
 
@@ -103,7 +114,7 @@ public class loginFrame extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
-                        .addComponent(identityBox, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(idBox, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -130,13 +141,13 @@ public class loginFrame extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(identityBox)
+                    .addComponent(idBox)
                     .addComponent(jLabel4))
-                .addGap(24, 24, 24)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtUser)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pwPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,9 +164,9 @@ public class loginFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void identityBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_identityBoxActionPerformed
+    private void idBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_identityBoxActionPerformed
+    }//GEN-LAST:event_idBoxActionPerformed
 
     private void clrBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clrBtnActionPerformed
         txtUser.setText("");
@@ -167,7 +178,12 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        // TODO add your handling code here:
+        Object idslct;
+        idslct=idBox.getSelectedItem();
+        //JOptionPane.showMessageDialog(this, idslct.toString());
+        sysAdminFrame.setVisible(true);
+        this.setVisible(false);
+        
     }//GEN-LAST:event_loginBtnActionPerformed
 
     private void clrBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clrBtn1ActionPerformed
@@ -212,7 +228,7 @@ public class loginFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton clrBtn;
     private javax.swing.JButton clrBtn1;
-    private javax.swing.JComboBox<String> identityBox;
+    private javax.swing.JComboBox<String> idBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
