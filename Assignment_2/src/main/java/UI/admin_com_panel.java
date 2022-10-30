@@ -4,22 +4,21 @@
  */
 package UI;
 
-import Hospital.hospitalDirectory;
+import BasicModel.communityDirectory;
 
 /**
  *
  * @author kai
  */
-public class admin_hos_panel extends javax.swing.JPanel {
+public class admin_com_panel extends javax.swing.JPanel {
 
     /**
-     * Creates new form admin_hos_panel
+     * Creates new form admin_com_panel
      */
-    hospitalDirectory hDirectory;
-    
-    public admin_hos_panel( hospitalDirectory hDirectory) {
+    communityDirectory cDirectory;
+    public admin_com_panel(communityDirectory cDirectory) {
         initComponents();
-        this.hDirectory=hDirectory;
+        this.cDirectory=cDirectory;
     }
 
     /**
@@ -31,38 +30,23 @@ public class admin_hos_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        createBtn = new javax.swing.JButton();
         txtDoctorID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        txtDepartment = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
         delBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtID = new javax.swing.JTextField();
+        txtDepartment = new javax.swing.JTextField();
         viewBtn = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
         editBtn = new javax.swing.JButton();
-        createBtn = new javax.swing.JButton();
 
-        jLabel2.setText("Hospital Name");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Name", "ID", "DOB", "Phone", "Email", "Address", "DoctorID", "Department", "Patients", "Encounters"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
+        createBtn.setText("Create");
 
         txtDoctorID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,11 +54,11 @@ public class admin_hos_panel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setText("Hospital Address");
+        jLabel3.setText("Community Road");
 
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View Hospital Profile");
+        jLabel1.setText("View Community Directory");
         jLabel1.setToolTipText("");
 
         txtName.addActionListener(new java.awt.event.ActionListener() {
@@ -83,11 +67,9 @@ public class admin_hos_panel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setText("Hospital City");
-
-        jLabel8.setText("Hospital Community");
-
         delBtn.setText("Delete");
+
+        jLabel6.setText("City");
 
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -96,9 +78,26 @@ public class admin_hos_panel extends javax.swing.JPanel {
             }
         });
 
-        editBtn.setText("Upadate");
+        jLabel8.setText("Zipcode");
 
-        createBtn.setText("Create");
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Community Name", "Road", "City", "Zipcode"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jLabel2.setText("Community Name");
+
+        editBtn.setText("Upadate");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -118,31 +117,26 @@ public class admin_hos_panel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(8, 8, 8))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel3))
-                                        .addGap(39, 39, 39)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtID)
-                                            .addComponent(txtName)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jLabel8))
-                                        .addGap(22, 22, 22)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel8))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtDepartment)
+                                    .addComponent(txtDoctorID, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(27, 27, 27))
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

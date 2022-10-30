@@ -4,41 +4,41 @@
  */
 package Doctor;
 
-import BasicModel.personProfile;
+import BasicModel.Person;
 import java.util.ArrayList;
 
 /**
  *
  * @author kai
  */
-public class doctorHistory {
-    private ArrayList<doctorProfile> history;
+public class doctorDirectory {
+    private ArrayList<Doctor> history;
     
-    public doctorHistory() {
-    this.history=new ArrayList<doctorProfile>();
+    public doctorDirectory() {
+    this.history=new ArrayList<Doctor>();
     
     }
 
-    public ArrayList<doctorProfile> getHistory() {
+    public ArrayList<Doctor> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<doctorProfile> history) {
+    public void setHistory(ArrayList<Doctor> history) {
         this.history = history;
     }
     
-     public doctorProfile addnewDoctor(){
-        doctorProfile newDoctor= new doctorProfile();
+     public Doctor addnewDoctor(){
+        Doctor newDoctor= new Doctor();
         history.add(newDoctor);
         return newDoctor;
         // instead of add profile manually to Array, use this method to history and return reference 
     }
     
-    public void deleteDoctor(doctorProfile selectedDoctor){
+    public void deleteDoctor(Doctor selectedDoctor){
         history.remove(selectedDoctor);
     }// create a void to delete profile
     
-    public void updateDoctor(int arrayIndex,doctorProfile sd){
+    public void updateDoctor(int arrayIndex,Doctor sd){
         history.set(arrayIndex, sd);
     }
 }

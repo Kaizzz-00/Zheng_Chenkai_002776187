@@ -10,33 +10,33 @@ import java.util.ArrayList;
  *
  * @author kai
  */
-public class personHistory {
-    private ArrayList<personProfile> history;
+public class personDirectory {
+    private ArrayList<Person> history;
     
-    public personHistory() {
-    this.history=new ArrayList<personProfile>();
+    public personDirectory() {
+    this.history=new ArrayList<Person>();
     }
 
-    public ArrayList<personProfile> getHistory() {
+    public ArrayList<Person> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<personProfile> history) {
+    public void setHistory(ArrayList<Person> history) {
         this.history = history;
     }
     
-    public personProfile addnewPerson(){
-        personProfile newPerson= new personProfile();
+    public Person addnewPerson(){
+        Person newPerson= new Person();
         history.add(newPerson);
         return newPerson;
         // instead of add profile manually to Array, use this method to history and return reference 
     }
     
-    public void deletePerson(personProfile selectedPerson){
+    public void deletePerson(Person selectedPerson){
         history.remove(selectedPerson);
     }// create a void to delete profile
     
-    public void updatePerson(int arrayIndex,personProfile sp){
+    public void updatePerson(int arrayIndex,Person sp){
         history.set(arrayIndex, sp);
     }
 }

@@ -4,8 +4,8 @@
  */
 package Doctor;
 
-import BasicModel.personProfile;
-import Patient.patientProfile;
+import BasicModel.Person;
+import Patient.Patient;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,13 +13,13 @@ import java.util.Date;
  *
  * @author kai
  */
-public class doctorProfile extends personProfile{
+public class Doctor extends Person{
     private int doctorID;
     private String Department;
     private String photo;
     
-    private ArrayList<patientProfile> dctPatient; //one doctor should have multiple patients
-    private ArrayList<encounterRecord> dctEncounter; //one doctor should have multiple encounters
+    private ArrayList<Patient> dctPatient; //one doctor should have multiple patients
+    private ArrayList<Encounter> dctEncounter; //one doctor should have multiple encounters
 
     public int getDoctorID() {
         return doctorID;
@@ -45,19 +45,19 @@ public class doctorProfile extends personProfile{
         this.photo = photo;
     }
 
-    public ArrayList<patientProfile> getDctPatient() {
+    public ArrayList<Patient> getDctPatient() {
         return dctPatient;
     }
 
-    public void setDctPatient(ArrayList<patientProfile> dctPatient) {
+    public void setDctPatient(ArrayList<Patient> dctPatient) {
         this.dctPatient = dctPatient;
     }
 
-    public ArrayList<encounterRecord> getDctEncounter() {
+    public ArrayList<Encounter> getDctEncounter() {
         return dctEncounter;
     }
 
-    public void setDctEncounter(ArrayList<encounterRecord> dctEncounter) {
+    public void setDctEncounter(ArrayList<Encounter> dctEncounter) {
         this.dctEncounter = dctEncounter;
     }
     

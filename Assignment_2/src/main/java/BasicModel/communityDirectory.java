@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Hospital;
+package BasicModel;
 
 import java.util.ArrayList;
 
@@ -10,19 +10,18 @@ import java.util.ArrayList;
  *
  * @author kai
  */
-public class hospitalHistory {
+public class communityDirectory {
+    private ArrayList<Community> history;
     
-    private ArrayList<hospitalProfile> history;
-        public hospitalHistory()
-    {
-        this.history=new ArrayList<hospitalProfile>();
+    public communityDirectory(){
+    this.history=new ArrayList<Community>();
     }
 
-    public ArrayList<hospitalProfile> getHistory() {
+    public ArrayList<Community> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<hospitalProfile> history) {
+    public void setHistory(ArrayList<Community> history) {
         this.history = history;
     }
     

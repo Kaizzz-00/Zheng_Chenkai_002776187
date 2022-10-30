@@ -4,7 +4,7 @@
  */
 package UI;
 
-import Patient.patientHistory;
+import Patient.patientDirectory;
 
 /**
  *
@@ -15,8 +15,8 @@ public class admin_pa_panel extends javax.swing.JPanel {
     /**
      * Creates new form admin_pa_panel
      */
-    patientHistory pHistory;
-    public admin_pa_panel(patientHistory pHistory) {
+    patientDirectory pHistory;
+    public admin_pa_panel(patientDirectory pHistory) {
         initComponents();
         this.pHistory=pHistory;
         

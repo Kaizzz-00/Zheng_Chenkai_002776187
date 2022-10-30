@@ -4,13 +4,13 @@
  */
 package Admin;
 
-import BasicModel.personProfile;
+import BasicModel.Person;
 
 /**
  *
  * @author kai
  */
-public class adminProfile extends personProfile {
+public class adminProfile extends Person {
     private String adminID;
     
 }

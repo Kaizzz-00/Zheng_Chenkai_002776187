@@ -4,8 +4,8 @@
  */
 package UI;
 
-import Doctor.doctorHistory;
-import Patient.patientHistory;
+import Doctor.doctorDirectory;
+import Patient.patientDirectory;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +17,11 @@ public class loginFrame extends javax.swing.JFrame {
     /**
      * Creates new form loginFrame
      */
-    patientHistory pHistory;
-    doctorHistory dHistory;
+    patientDirectory pHistory;
+    doctorDirectory dHistory;
     //adminHistory aHistory;
-    sysAdmin sysAdminFrame=new sysAdmin();
-    
+    sysAdminFrame sysAdminFrame=new sysAdminFrame();
+    patientFrame patientFrame=new patientFrame();
     
     
     public loginFrame() {
@@ -181,8 +181,14 @@ public class loginFrame extends javax.swing.JFrame {
         Object idslct;
         idslct=idBox.getSelectedItem();
         //JOptionPane.showMessageDialog(this, idslct.toString());
-        sysAdminFrame.setVisible(true);
-        this.setVisible(false);
+        if (idslct.toString()=="System Admin"){
+            sysAdminFrame.setVisible(true);
+            this.setVisible(false);
+        }
+        if (idslct.toString()=="Patient"){
+            patientFrame.setVisible(true);
+            this.setVisible(false);
+        }
         
     }//GEN-LAST:event_loginBtnActionPerformed
 

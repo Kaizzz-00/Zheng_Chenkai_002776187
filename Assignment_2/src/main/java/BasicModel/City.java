@@ -8,7 +8,7 @@ package BasicModel;
  *
  * @author kai
  */
-public class cityProfile {
+public class City {
     private String cityName;
     private String state;
     private String zipcode;

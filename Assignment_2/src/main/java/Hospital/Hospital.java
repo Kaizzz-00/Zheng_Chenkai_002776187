@@ -4,18 +4,18 @@
  */
 package Hospital;
 
-import BasicModel.cityProfile;
-import BasicModel.communityProfile;
+import BasicModel.City;
+import BasicModel.Community;
 
 /**
  *
  * @author kai
  */
-public class hospitalProfile {
+public class Hospital {
     private String hosName;
     private String hosAddress;
-    private cityProfile city;
-    private communityProfile community;
+    private City city;
+    private Community community;
 
     public String getHosName() {
         return hosName;
@@ -33,19 +33,19 @@ public class hospitalProfile {
         this.hosAddress = hosAddress;
     }
 
-    public cityProfile getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(cityProfile city) {
+    public void setCity(City city) {
         this.city = city;
     }
 
-    public communityProfile getCommunity() {
+    public Community getCommunity() {
         return community;
     }
 
-    public void setCommunity(communityProfile community) {
+    public void setCommunity(Community community) {
         this.community = community;
     }
     

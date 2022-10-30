@@ -10,34 +10,34 @@ import java.util.ArrayList;
  *
  * @author kai
  */
-public class patientHistory {
-    private ArrayList<patientProfile> history;
+public class patientDirectory {
+    private ArrayList<Patient> history;
     
-    public patientHistory()
+    public patientDirectory()
     {
-        this.history=new ArrayList<patientProfile>();
+        this.history=new ArrayList<Patient>();
     }
 
-    public ArrayList<patientProfile> getHistory() {
+    public ArrayList<Patient> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<patientProfile> history) {
+    public void setHistory(ArrayList<Patient> history) {
         this.history = history;
     }
     
-      public patientProfile addnewPatient(){
-        patientProfile newPatient= new patientProfile();
+      public Patient addnewPatient(){
+        Patient newPatient= new Patient();
         history.add(newPatient);
         return newPatient;
         // instead of add profile manually to Array, use this method to history and return reference 
     }
     
-    public void deletePatient(patientProfile selectedPatient){
+    public void deletePatient(Patient selectedPatient){
         history.remove(selectedPatient);
     }// create a void to delete profile
     
-    public void updatePatient(int arrayIndex,patientProfile sp){
+    public void updatePatient(int arrayIndex,Patient sp){
         history.set(arrayIndex, sp);
     }
 }

@@ -11,17 +11,17 @@ import java.util.ArrayList;
  * @author kai
  */
 public class encounterHistory {
-    private ArrayList<encounterRecord> history;
+    private ArrayList<Encounter> history;
     
     public encounterHistory() {
-    this.history=new ArrayList<encounterRecord>();
+    this.history=new ArrayList<Encounter>();
     }
 
-    public ArrayList<encounterRecord> getHistory() {
+    public ArrayList<Encounter> getHistory() {
         return history;
     }
 
-    public void setHistory(ArrayList<encounterRecord> history) {
+    public void setHistory(ArrayList<Encounter> history) {
         this.history = history;
     }
     

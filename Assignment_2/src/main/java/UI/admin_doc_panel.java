@@ -4,6 +4,8 @@
  */
 package UI;
 
+import Doctor.doctorDirectory;
+
 /**
  *
  * @author kai
@@ -13,8 +15,10 @@ public class admin_doc_panel extends javax.swing.JPanel {
     /**
      * Creates new form admin_doc_panel
      */
-    public admin_doc_panel() {
+    doctorDirectory dDirectory;
+    public admin_doc_panel(doctorDirectory dDirectory) {
         initComponents();
+        this.dDirectory=dDirectory;
     }
 
     /**

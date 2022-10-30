@@ -8,10 +8,10 @@ package BasicModel;
  *
  * @author kai
  */
-public class communityProfile {
+public class Community {
     private String comName;
     private String comRoad;
-    private cityProfile city;
+    private City city;
 
     public String getComName() {
         return comName;
@@ -29,11 +29,11 @@ public class communityProfile {
         this.comRoad = comRoad;
     }
 
-    public cityProfile getCity() {
+    public City getCity() {
         return city;
     }
 
-    public void setCity(cityProfile city) {
+    public void setCity(City city) {
         this.city = city;
     }
     

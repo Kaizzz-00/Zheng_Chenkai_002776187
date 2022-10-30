@@ -4,20 +4,20 @@
  */
 package Patient;
 
-import BasicModel.personProfile;
-import Doctor.encounterRecord;
+import BasicModel.Person;
+import Doctor.Encounter;
 import java.util.Date;
 
 /**
  *
  * @author kai
  */
-public class patientProfile extends personProfile {
+public class Patient extends Person {
     private Integer patientID;
     private Integer age;
     private String gender;
     private vitalSigns ownVital; //have their own vitals 
-    private encounterRecord ownEncounter;// can edit their own encounters
+    private Encounter ownEncounter;// can edit their own encounters
 
     public Integer getAge() {
         return age;
@@ -45,11 +45,11 @@ public class patientProfile extends personProfile {
         this.ownVital = ownVital;
     }
 
-    public encounterRecord getOwnEncounter() {
+    public Encounter getOwnEncounter() {
         return ownEncounter;
     }
 
-    public void setOwnEncounter(encounterRecord ownEncounter) {
+    public void setOwnEncounter(Encounter ownEncounter) {
         this.ownEncounter = ownEncounter;
     }
     

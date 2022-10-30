@@ -4,8 +4,8 @@
  */
 package Doctor;
 
-import Hospital.hospitalProfile;
-import Patient.patientProfile;
+import Hospital.Hospital;
+import Patient.Patient;
 import Patient.vitalSigns;
 import java.util.Date;
 
@@ -13,35 +13,38 @@ import java.util.Date;
  *
  * @author kai
  */
-public class encounterRecord {
-    private doctorProfile enDoctor; //each encounter has a doctor and a patient 
-    private patientProfile enPatient;
+public class Encounter {
+
+    private Doctor enDoctor; //each encounter has a doctor and a patient 
+    private Patient enPatient;
     private vitalSigns enVital;
     private Date enDate;
-    private hospitalProfile enHospital;
+    private Hospital enHospital;
     //private Date enDate;
 
-    public hospitalProfile getEnHospital() {
+  
+
+    public Hospital getEnHospital() {
         return enHospital;
     }
 
-    public void setEnHospital(hospitalProfile enHospital) {
+    public void setEnHospital(Hospital enHospital) {
         this.enHospital = enHospital;
     }
 
-    public doctorProfile getEnDoctor() {
+    public Doctor getEnDoctor() {
         return enDoctor;
     }
 
-    public void setEnDoctor(doctorProfile enDoctor) {
+    public void setEnDoctor(Doctor enDoctor) {
         this.enDoctor = enDoctor;
     }
 
-    public patientProfile getEnPatient() {
+    public Patient getEnPatient() {
         return enPatient;
     }
 
-    public void setEnPatient(patientProfile enPatient) {
+    public void setEnPatient(Patient enPatient) {
         this.enPatient = enPatient;
     }
 

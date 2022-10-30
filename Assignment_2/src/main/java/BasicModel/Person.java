@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author kai
  */
-public class personProfile {
+public class Person {
     private String name;
     private String ID;
     private Date DOB;
