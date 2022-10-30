@@ -41,17 +41,16 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel9" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="0" min="-2" pref="76" max="-2" attributes="0"/>
-                                  <Component id="jLabel14" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="txtPID" alignment="0" max="32767" attributes="0"/>
                                   <Component id="txtAddress" alignment="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
-                              <Component id="jLabel18" min="-2" pref="93" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
                               <Component id="txtPID5" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -76,6 +75,11 @@
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="txtPID2" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel14" min="-2" pref="93" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="txtPID8" min="-2" pref="110" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -84,7 +88,7 @@
                               </Group>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPID4" pref="137" max="32767" attributes="0"/>
+                                  <Component id="txtPID4" pref="150" max="32767" attributes="0"/>
                                   <Component id="txtPID3" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -166,7 +170,6 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           <Component id="txtDOB" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="jLabel14" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           <Component id="txtPID1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
@@ -176,13 +179,10 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="3" attributes="0">
-                                                  <Component id="txtPhone" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                                  <Component id="jLabel15" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                                  <Component id="txtPID2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" groupAlignment="3" attributes="0">
+                                              <Component id="txtPhone" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="jLabel15" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="txtPID2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -191,7 +191,11 @@
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="jLabel16" min="-2" pref="29" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" max="-2" attributes="0"/>
-                                                      <Component id="jLabel17" min="-2" pref="29" max="-2" attributes="0"/>
+                                                      <Group type="103" groupAlignment="3" attributes="0">
+                                                          <Component id="jLabel17" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                                          <Component id="jLabel14" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                                          <Component id="txtPID8" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                                      </Group>
                                                   </Group>
                                               </Group>
                                           </Group>
@@ -443,6 +447,11 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JTextField" name="txtPID8">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID8ActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

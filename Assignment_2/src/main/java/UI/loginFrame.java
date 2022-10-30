@@ -17,12 +17,12 @@ public class loginFrame extends javax.swing.JFrame {
     /**
      * Creates new form loginFrame
      */
-    patientDirectory pHistory;
-    doctorDirectory dHistory;
+    patientDirectory pDirectory;
+    doctorDirectory dDirectory;
     //adminHistory aHistory;
     sysAdminFrame sysAdminFrame=new sysAdminFrame();
     patientFrame patientFrame=new patientFrame();
-    
+    doctorFrame doctorFrame=new doctorFrame();
     
     public loginFrame() {
         initComponents();
@@ -187,6 +187,10 @@ public class loginFrame extends javax.swing.JFrame {
         }
         if (idslct.toString()=="Patient"){
             patientFrame.setVisible(true);
+            this.setVisible(false);
+        }
+        if (idslct.toString()=="Doctor"){
+            doctorFrame.setVisible(true);
             this.setVisible(false);
         }
         

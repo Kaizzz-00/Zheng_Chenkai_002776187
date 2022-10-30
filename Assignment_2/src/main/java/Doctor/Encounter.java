@@ -20,7 +20,16 @@ public class Encounter {
     private vitalSigns enVital;
     private Date enDate;
     private Hospital enHospital;
+    private String enDiagnose;
     //private Date enDate;
+
+    public String getEnDiagnose() {
+        return enDiagnose;
+    }
+
+    public void setEnDiagnose(String enDiagnose) {
+        this.enDiagnose = enDiagnose;
+    }
 
   
 
