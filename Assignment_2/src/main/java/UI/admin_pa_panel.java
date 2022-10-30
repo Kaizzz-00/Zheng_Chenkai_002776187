@@ -158,6 +158,11 @@ public class admin_pa_panel extends javax.swing.JPanel {
         });
 
         jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jLabel14.setText("Temperature");
 
@@ -478,9 +483,17 @@ public class admin_pa_panel extends javax.swing.JPanel {
         
         
         
-        boolean isTrue=true;
+        boolean isTrue=false;
         String name= txtName.getText();
         String id=txtID.getText();
+        if (id.matches("[0-9]+") && id.length() > 1) {
+            isTrue=true;
+        }
+        if (isTrue!=true){
+            JOptionPane.showMessageDialog(this, "Valid ID Required");
+            txtID.setText("");
+            return; //validate the input id
+        }
         
         String phone=txtPhone.getText();
         if (phone.length()!=10)
@@ -497,8 +510,17 @@ public class admin_pa_panel extends javax.swing.JPanel {
                 txtEmail.setText(""); // validate the input email
                 return;
         }
-        Integer age=Integer.valueOf(txtAge.getText()); // need validation
         
+        
+        //Integer age=Integer.valueOf(txtAge.getText()); // need validation
+        String stringAge=txtAge.getText();
+        if (stringAge.equals("") || (!(stringAge.matches("[0-9]+") && stringAge.length() > 1))){
+            JOptionPane.showMessageDialog(this, "Valid Age Required");
+            txtAge.setText(""); // validate the input email
+            return;
+        }
+        Integer age=Integer.parseInt(stringAge);
+      
         Patient newP=pDirectory.addnewPatient();
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         try {
@@ -511,7 +533,12 @@ public class admin_pa_panel extends javax.swing.JPanel {
         }
         String gender=txtGender.getText();
         String address=txtAddress.getText();
-        Integer patientID=Integer.valueOf(txtPID.getText());
+        String patientID=(txtPID.getText());
+        if (!(patientID.matches("[0-9]+") && id.length() > 1)) {
+            JOptionPane.showMessageDialog(this, "Valid PatientID Required");
+            txtPID.setText(""); // validate the input email
+            return;
+        }
         
         /*Integer bloodpressure=Integer.valueOf(txtBP.getText());
         Integer pulserate=Integer.valueOf(txtPR.getText());
@@ -597,7 +624,7 @@ public class admin_pa_panel extends javax.swing.JPanel {
         }
         String gender=txtGender.getText();
         String address=txtAddress.getText();
-        Integer patientID=Integer.valueOf(txtPID.getText());
+        String patientID=(txtPID.getText());
         
         newP.setName(name);
         newP.setID(id);
@@ -621,6 +648,21 @@ public class admin_pa_panel extends javax.swing.JPanel {
         displayTable();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Delete.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Patient selectedProfile=(Patient) model.getValueAt(slctRowIndex,0);
+        
+        pDirectory.deletePatient(selectedProfile);// to delete the selected profile, need to create a void
+        JOptionPane.showMessageDialog(this, "Selected Profile Deleted.");
+        displayTable();//refresh table
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     private void displayTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
@@ -630,17 +672,16 @@ public class admin_pa_panel extends javax.swing.JPanel {
         for (Patient pa:pDirectory.getHistory()){
             Object[] row = new Object[11];
             row[0]=pa;
-            row[1]= pa.getName();
-            row[2]= pa.getID();
-            row[3]= pa.getDOB();
-            row[4]= pa.getGender();
-            row[5]= pa.getPhone();
+            //row[1]= pa.getName();
+            row[1]= pa.getID();
+            row[2]= pa.getDOB();
+            row[3]= pa.getPhone();
             
-            row[6]= pa.getEmail();
-            row[7]= pa.getAddress();
-            row[8]= pa.getPatientID();
-            row[9]= pa.getAge();
-            row[10]= pa.getGender();
+            row[4]= pa.getEmail();
+            row[5]= pa.getAddress();
+            row[6]= pa.getPatientID();
+            row[7]= pa.getAge();
+            row[8]= pa.getGender();
             // use a small array to display each attributes
             model.addRow(row);
 

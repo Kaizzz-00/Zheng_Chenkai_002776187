@@ -14,20 +14,22 @@ import java.util.Date;
  * @author kai
  */
 public class Doctor extends Person{
-    private int doctorID;
+    private String doctorID;
     private String Department;
     private String photo;
     
     private ArrayList<Patient> dctPatient; //one doctor should have multiple patients
     private ArrayList<Encounter> dctEncounter; //one doctor should have multiple encounters
 
-    public int getDoctorID() {
+    public String getDoctorID() {
         return doctorID;
     }
 
-    public void setDoctorID(int doctorID) {
+    public void setDoctorID(String doctorID) {
         this.doctorID = doctorID;
     }
+
+   
 
     public String getDepartment() {
         return Department;
@@ -59,6 +61,11 @@ public class Doctor extends Person{
 
     public void setDctEncounter(ArrayList<Encounter> dctEncounter) {
         this.dctEncounter = dctEncounter;
+    }
+    
+    @Override
+    public String toString(){
+        return super.getName();
     }
     
 }

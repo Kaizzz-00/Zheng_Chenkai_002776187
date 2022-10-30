@@ -13,11 +13,19 @@ import java.util.Date;
  * @author kai
  */
 public class Patient extends Person {
-    private Integer patientID;
+    private String patientID;
     private Integer age;
     private String gender;
     private vitalSigns ownVital; //have their own vitals 
     private Encounter ownEncounter;// can edit their own encounters
+
+    public String getPatientID() {
+        return patientID;
+    }
+
+    public void setPatientID(String patientID) {
+        this.patientID = patientID;
+    }
 
     public String getGender() {
         return gender;
@@ -36,13 +44,7 @@ public class Patient extends Person {
     }
 
     
-    public Integer getPatientID() {
-        return patientID;
-    }
 
-    public void setPatientID(Integer patientID) {
-        this.patientID = patientID;
-    }
 
 
     public vitalSigns getOwnVital() {
@@ -61,6 +63,10 @@ public class Patient extends Person {
         this.ownEncounter = ownEncounter;
     }
     
+    @Override
+    public String toString(){
+        return super.getName();
+    }
 
     
 }

@@ -4,7 +4,16 @@
  */
 package UI;
 
+import Doctor.Doctor;
 import Doctor.doctorDirectory;
+//import Patient.Patient;
+//import Patient.Patient;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,6 +28,7 @@ public class admin_doc_panel extends javax.swing.JPanel {
     public admin_doc_panel(doctorDirectory dDirectory) {
         initComponents();
         this.dDirectory=dDirectory;
+        displayTable();
     }
 
     /**
@@ -52,7 +62,7 @@ public class admin_doc_panel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtDepartment = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtDoctorID = new javax.swing.JTextField();
+        txtDID = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
@@ -95,12 +105,27 @@ public class admin_doc_panel extends javax.swing.JPanel {
         });
 
         editBtn.setText("Upadate");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setText("Create");
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createBtnActionPerformed(evt);
+            }
+        });
 
         jLabel5.setText("Phone ");
 
         delBtn.setText("Delete");
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -121,9 +146,9 @@ public class admin_doc_panel extends javax.swing.JPanel {
 
         jLabel8.setText("Department");
 
-        txtDoctorID.addActionListener(new java.awt.event.ActionListener() {
+        txtDID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDoctorIDActionPerformed(evt);
+                txtDIDActionPerformed(evt);
             }
         });
 
@@ -194,7 +219,7 @@ public class admin_doc_panel extends javax.swing.JPanel {
                                     .addComponent(jLabel9))
                                 .addGap(24, 24, 24)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDoctorID)
+                                    .addComponent(txtDID)
                                     .addComponent(txtDepartment)
                                     .addComponent(dcPatientBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(dcEncounterBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -254,7 +279,7 @@ public class admin_doc_panel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtDID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -282,20 +307,274 @@ public class admin_doc_panel extends javax.swing.JPanel {
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Doctor sd=(Doctor) model.getValueAt(slctRowIndex,0);
+        
+        txtName.setText(sd.getName());
+        txtID.setText(sd.getID());
+        txtDOB.setText(String.valueOf(sd.getDOB()));
+        txtPhone.setText(sd.getPhone());
+        txtEmail.setText(sd.getEmail());
+        txtAddress.setText(sd.getAddress());
+        txtDID.setText(sd.getDoctorID());
+        txtDepartment.setText(sd.getDepartment());
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtDoctorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorIDActionPerformed
+    private void txtDIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDIDActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtDoctorIDActionPerformed
+    }//GEN-LAST:event_txtDIDActionPerformed
 
     private void dcPatientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dcPatientBtnActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_dcPatientBtnActionPerformed
 
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        // TODO add your handling code here:
+        boolean isTrue=false;
+        
+        String name= txtName.getText();
+        String id=txtID.getText();
+        if (id.matches("[0-9]+") && id.length() > 1) {
+            isTrue=true;
+        }
+        if (isTrue!=true){
+            JOptionPane.showMessageDialog(this, "Valid ID Required");
+            txtID.setText("");
+            return; //validate the input id
+        }
+        
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        
+        
+        //Integer age=Integer.valueOf(txtAge.getText()); // need validation
+        
+      
+        Doctor newD=dDirectory.addnewDoctor();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newD.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+   
+        String address=txtAddress.getText();
+        String doctorID=(txtDID.getText());
+        if (!(doctorID.matches("[0-9]+") && id.length() > 1)) {
+            JOptionPane.showMessageDialog(this, "Valid DoctorID Required");
+            txtDID.setText(""); // validate the input email
+            return;
+        }
+        String dep=txtDepartment.getText();
+        
+        /*Integer bloodpressure=Integer.valueOf(txtBP.getText());
+        Integer pulserate=Integer.valueOf(txtPR.getText());
+        Double temperature=Double.valueOf(txtTemp.getText());
+        Integer respiratoryrate=Integer.valueOf(txtRR.getText());*/
+       
+        
+        /*String stringEndate=txtEndate.getText();
+        
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newP.setOwnEncounter(sdf.parse(stringEndate));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtEndate.setText("");
+            return;
+        }*/
+     
+        
+        newD.setName(name);
+        newD.setID(id);
+        newD.setPhone(phone);
+        newD.setDepartment(dep);
+        newD.setEmail(email);
+        newD.setAddress(address);
+        newD.setDoctorID(doctorID);
+        
+        JOptionPane.showMessageDialog(this, "New Doctor Added.");
+        txtName.setText("");
+        
+        txtID.setText("");
+        txtAddress.setText("");
+        txtPhone.setText("");
+        txtDID.setText("");
+        txtDOB.setText("");
+        txtEmail.setText("");
+        displayTable();
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Doctor newD=(Doctor) model.getValueAt(slctRowIndex,0);
+        
+        boolean isTrue=false;
+        
+        String name= txtName.getText();
+        String id=txtID.getText();
+        if (id.matches("[0-9]+") && id.length() > 1) {
+            isTrue=true;
+        }
+        if (isTrue!=true){
+            JOptionPane.showMessageDialog(this, "Valid ID Required");
+            txtID.setText("");
+            return; //validate the input id
+        }
+        
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        
+        
+        //Integer age=Integer.valueOf(txtAge.getText()); // need validation
+        
+      
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newD.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+   
+        String address=txtAddress.getText();
+        String doctorID=(txtDID.getText());
+        if (!(doctorID.matches("[0-9]+") && id.length() > 1)) {
+            JOptionPane.showMessageDialog(this, "Valid DoctorID Required");
+            txtDID.setText(""); // validate the input email
+            return;
+        }
+        String dep=txtDepartment.getText();
+        
+        /*Integer bloodpressure=Integer.valueOf(txtBP.getText());
+        Integer pulserate=Integer.valueOf(txtPR.getText());
+        Double temperature=Double.valueOf(txtTemp.getText());
+        Integer respiratoryrate=Integer.valueOf(txtRR.getText());*/
+       
+        
+        /*String stringEndate=txtEndate.getText();
+        
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newP.setOwnEncounter(sdf.parse(stringEndate));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtEndate.setText("");
+            return;
+        }*/
+     
+        
+        newD.setName(name);
+        newD.setID(id);
+        newD.setPhone(phone);
+        newD.setDepartment(dep);
+        newD.setEmail(email);
+        newD.setAddress(address);
+        newD.setDoctorID(doctorID);
+        
+        JOptionPane.showMessageDialog(this, "Doctor Profile Updated.");
+        txtName.setText("");
+        
+        txtID.setText("");
+        txtAddress.setText("");
+        txtPhone.setText("");
+        txtDID.setText("");
+        txtDOB.setText("");
+        txtEmail.setText("");
+        displayTable();
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Delete.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Doctor selectedProfile=(Doctor) model.getValueAt(slctRowIndex,0);
+        
+        dDirectory.deleteDoctor(selectedProfile);// to delete the selected profile, need to create a void
+        JOptionPane.showMessageDialog(this, "Selected Profile Deleted.");
+        displayTable();//refresh table
+    }//GEN-LAST:event_delBtnActionPerformed
+    private void displayTable() {
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Doctor da:dDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=da;
+            //row[1]= pa.getName();
+            row[1]= da.getID();
+            row[2]= da.getDOB();
+            row[3]= da.getPhone();
+            
+            row[4]= da.getEmail();
+            row[5]= da.getAddress();
+            row[6]= da.getDoctorID();
+            row[7]= da.getDepartment();
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createBtn;
@@ -319,9 +598,9 @@ public class admin_doc_panel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtDID;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtDepartment;
-    private javax.swing.JTextField txtDoctorID;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;

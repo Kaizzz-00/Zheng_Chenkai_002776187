@@ -49,4 +49,8 @@ public class Hospital {
         this.community = community;
     }
     
+    @Override
+    public String toString(){
+        return hosName;
+    }
 }

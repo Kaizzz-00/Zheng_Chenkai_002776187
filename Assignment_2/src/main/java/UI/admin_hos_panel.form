@@ -46,7 +46,7 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtID" max="32767" attributes="0"/>
+                                          <Component id="txtAddress" max="32767" attributes="0"/>
                                           <Component id="txtName" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
@@ -57,8 +57,8 @@
                                       </Group>
                                       <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="txtDepartment" min="-2" pref="228" max="-2" attributes="0"/>
-                                          <Component id="txtDoctorID" min="-2" pref="228" max="-2" attributes="0"/>
+                                          <Component id="txtCommunity" min="-2" pref="228" max="-2" attributes="0"/>
+                                          <Component id="txtCity" min="-2" pref="228" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -85,17 +85,17 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel3" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="txtID" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txtAddress" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel6" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="txtDoctorID" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txtCity" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                  <Component id="txtDepartment" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                  <Component id="txtCommunity" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="91" max="32767" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -115,7 +115,7 @@
         <Property name="text" type="java.lang.String" value="Hospital Name"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtID">
+    <Component class="javax.swing.JTextField" name="txtAddress">
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
 
@@ -124,26 +124,20 @@
         <Component class="javax.swing.JTable" name="jTable1">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="10" rowCount="6">
-                <Column editable="true" title="Name" type="java.lang.Object"/>
-                <Column editable="true" title="ID" type="java.lang.Object"/>
-                <Column editable="true" title="DOB" type="java.lang.Object"/>
-                <Column editable="true" title="Phone" type="java.lang.Object"/>
-                <Column editable="true" title="Email" type="java.lang.Object"/>
-                <Column editable="true" title="Address" type="java.lang.Object"/>
-                <Column editable="true" title="DoctorID" type="java.lang.Object"/>
-                <Column editable="true" title="Department" type="java.lang.Object"/>
-                <Column editable="true" title="Patients" type="java.lang.Object"/>
-                <Column editable="true" title="Encounters" type="java.lang.Object"/>
+              <Table columnCount="4" rowCount="6">
+                <Column editable="true" title="HospitalName" type="java.lang.Object"/>
+                <Column editable="true" title="HospitalAddress" type="java.lang.Object"/>
+                <Column editable="true" title="HospitalCity" type="java.lang.Object"/>
+                <Column editable="true" title="HospitalCommunity" type="java.lang.Object"/>
               </Table>
             </Property>
           </Properties>
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JTextField" name="txtDoctorID">
+    <Component class="javax.swing.JTextField" name="txtCity">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDoctorIDActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCityActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
@@ -171,7 +165,7 @@
         <Property name="text" type="java.lang.String" value="Hospital City"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDepartment">
+    <Component class="javax.swing.JTextField" name="txtCommunity">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
@@ -200,6 +194,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="createBtnActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

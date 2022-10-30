@@ -25,6 +25,19 @@ public class hospitalDirectory {
     public void setDirectory(ArrayList<Hospital> directory) {
         this.directory = directory;
     }
-
+    public Hospital addnewHospital(){
+        Hospital newHospital= new Hospital();
+        directory.add(newHospital);
+        return newHospital;
+        // instead of add profile manually to Array, use this method to history and return reference 
+    }
+    
+    public void deleteHospital(Hospital selectedHospital){
+        directory.remove(selectedHospital);
+    }// create a void to delete profile
+    
+    public void updateHospital(int arrayIndex,Hospital sh){
+        directory.set(arrayIndex, sh);
+    }
     
 }
