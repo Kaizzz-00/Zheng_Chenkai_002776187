@@ -4,7 +4,12 @@
  */
 package UI;
 
+import BasicModel.communityDirectory;
+import BasicModel.personDirectory;
+import BasicModel.userDirectory;
 import Doctor.doctorDirectory;
+import Doctor.encounterHistory;
+import Hospital.hospitalDirectory;
 import Patient.patientDirectory;
 import javax.swing.JOptionPane;
 
@@ -19,11 +24,19 @@ public class loginFrame extends javax.swing.JFrame {
      */
     patientDirectory pDirectory;
     doctorDirectory dDirectory;
+    personDirectory personDirectory;
+    userDirectory uDirectory;
+    communityDirectory cDirectory;
+    encounterHistory eHistory;
+    hospitalDirectory hDirectory;
+    
     //adminHistory aHistory;
-    sysAdminFrame sysAdminFrame=new sysAdminFrame();
+    //sysAdminFrame sysAdminFrame=new sysAdminFrame("");
     patientFrame patientFrame=new patientFrame();
     doctorFrame doctorFrame=new doctorFrame();
-    
+    sysAdminFrame sysAdminFrame=new sysAdminFrame();
+    hosAdminFrame hosAdminFrame=new hosAdminFrame();
+    comAdminFrame comAdminFrame=new comAdminFrame();
     public loginFrame() {
         initComponents();
     }
@@ -180,18 +193,31 @@ public class loginFrame extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         Object idslct;
         idslct=idBox.getSelectedItem();
+
         //JOptionPane.showMessageDialog(this, idslct.toString());
         if (idslct.toString()=="System Admin"){
+            //sysAdminFrame.setUserIdentity("Sys");
             sysAdminFrame.setVisible(true);
-            this.setVisible(false);
+            //this.setVisible(false);
+        }
+        if (idslct.toString()=="Community Admin"){
+            //sysAdminFrame.setUserIdentity("Com");
+            comAdminFrame.setVisible(true);
+            //this.setVisible(false);
+        }
+        if (idslct.toString()=="Hospital Admin"){
+            //sysAdminFrame.setUserIdentity("Hos");
+            //JOptionPane.showMessageDialog(this, idslct.toString());
+            hosAdminFrame.setVisible(true);
+            //this.setVisible(false);
         }
         if (idslct.toString()=="Patient"){
             patientFrame.setVisible(true);
-            this.setVisible(false);
+            //this.setVisible(false);
         }
         if (idslct.toString()=="Doctor"){
             doctorFrame.setVisible(true);
-            this.setVisible(false);
+            //this.setVisible(false);
         }
         
     }//GEN-LAST:event_loginBtnActionPerformed
