@@ -29,11 +29,11 @@
                       </Group>
                       <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="txtPhone" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtDOB" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtPhone" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtID" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtName" alignment="0" max="32767" attributes="0"/>
-                          <Component id="txtEmail" alignment="1" min="-2" pref="200" max="-2" attributes="0"/>
+                          <Component id="txtEmail" alignment="1" pref="200" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -51,7 +51,7 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
-                              <Component id="txtPID5" max="32767" attributes="0"/>
+                              <Component id="txtEndate" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -60,15 +60,15 @@
                               </Group>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPID7" max="32767" attributes="0"/>
-                                  <Component id="txtPID6" max="32767" attributes="0"/>
+                                  <Component id="txtEnhos" max="32767" attributes="0"/>
+                                  <Component id="txtEndoc" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="99" max="-2" attributes="0"/>
-                                      <Component id="txtPID1" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <Component id="txtBP" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="jLabel15" min="-2" pref="93" max="-2" attributes="0"/>
@@ -78,7 +78,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel14" min="-2" pref="93" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="txtPID8" min="-2" pref="110" max="-2" attributes="0"/>
+                                      <Component id="txtTemp" min="-2" pref="110" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
@@ -88,8 +88,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPID4" pref="150" max="32767" attributes="0"/>
-                                  <Component id="txtPID3" max="32767" attributes="0"/>
+                                  <Component id="txtRR" pref="150" max="32767" attributes="0"/>
+                                  <Component id="txtPR" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -165,12 +165,11 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="txtPID3" min="-2" pref="29" max="-2" attributes="0"/>
+                                  <Component id="txtPR" min="-2" pref="29" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="jLabel4" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="txtDOB" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="txtPID1" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="txtBP" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Component id="jLabel5" min="-2" pref="29" max="-2" attributes="0"/>
@@ -180,21 +179,22 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="txtPhone" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                              <Component id="txtDOB" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                               <Component id="jLabel15" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                               <Component id="txtPID2" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Component id="txtPID4" alignment="1" min="-2" pref="29" max="-2" attributes="0"/>
+                                                  <Component id="txtRR" alignment="1" min="-2" pref="29" max="-2" attributes="0"/>
                                                   <Group type="102" alignment="1" attributes="0">
                                                       <Component id="jLabel16" min="-2" pref="29" max="-2" attributes="0"/>
                                                       <EmptySpace min="-2" max="-2" attributes="0"/>
                                                       <Group type="103" groupAlignment="3" attributes="0">
                                                           <Component id="jLabel17" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                                           <Component id="jLabel14" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                                          <Component id="txtPID8" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                                          <Component id="txtTemp" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                                          <Component id="txtPhone" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                                       </Group>
                                                   </Group>
                                               </Group>
@@ -204,7 +204,7 @@
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="txtEmail" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                           <Component id="jLabel18" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
-                                          <Component id="txtPID5" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
+                                          <Component id="txtEndate" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -214,10 +214,10 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
-                              <Component id="txtPID7" min="-2" pref="29" max="-2" attributes="0"/>
+                              <Component id="txtEnhos" min="-2" pref="29" max="-2" attributes="0"/>
                           </Group>
                           <Component id="jLabel19" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
-                          <Component id="txtPID6" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
+                          <Component id="txtEndoc" alignment="0" min="-2" pref="29" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
@@ -296,7 +296,7 @@
         <Property name="text" type="java.lang.String" value="Phone "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPhone">
+    <Component class="javax.swing.JTextField" name="txtDOB">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel6">
       <Properties>
@@ -349,7 +349,7 @@
         <Property name="text" type="java.lang.String" value="ID"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDOB">
+    <Component class="javax.swing.JTextField" name="txtPhone">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
@@ -360,11 +360,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Upadate"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
         <Property name="text" type="java.lang.String" value="Create"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton3">
       <Properties>
@@ -391,9 +397,9 @@
         <Property name="text" type="java.lang.String" value="RespirationRate"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID1">
+    <Component class="javax.swing.JTextField" name="txtBP">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID1ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtBPActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="txtPID2">
@@ -401,14 +407,14 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID2ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID3">
+    <Component class="javax.swing.JTextField" name="txtPR">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID3ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPRActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID4">
+    <Component class="javax.swing.JTextField" name="txtRR">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRRActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel18">
@@ -421,14 +427,14 @@
         <Property name="text" type="java.lang.String" value="EnDoctor"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID5">
+    <Component class="javax.swing.JTextField" name="txtEndate">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEndateActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID6">
+    <Component class="javax.swing.JTextField" name="txtEndoc">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID6ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEndocActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel20">
@@ -436,9 +442,9 @@
         <Property name="text" type="java.lang.String" value="EnHospital"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID7">
+    <Component class="javax.swing.JTextField" name="txtEnhos">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID7ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEnhosActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jButton4">
@@ -449,9 +455,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPID8">
+    <Component class="javax.swing.JTextField" name="txtTemp">
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPID8ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTempActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

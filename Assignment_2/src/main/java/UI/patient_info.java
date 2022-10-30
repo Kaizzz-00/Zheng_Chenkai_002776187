@@ -15,10 +15,10 @@ public class patient_info extends javax.swing.JPanel {
     /**
      * Creates new form patient_info
      */
-    Patient currentPatient;
+    Patient cp;
     public patient_info(Patient currentPatient) {
         initComponents();
-        this.currentPatient=currentPatient;
+        this.cp=currentPatient;
         txtName.setEditable(false);
         txtID.setEditable(false);
         txtDOB.setEditable(false);
@@ -166,6 +166,12 @@ public class patient_info extends javax.swing.JPanel {
         txtPhone.setEditable(true);
         txtEmail.setEditable(true);
         txtAddress.setEditable(true);
+        txtName.setText(cp.getName());
+        txtID.setText(cp.getID());
+        txtDOB.setText(String.valueOf(cp.getDOB()));
+        txtPhone.setText(cp.getPhone());
+        txtEmail.setText(cp.getEmail());
+        txtAddress.setText(cp.getAddress());
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed

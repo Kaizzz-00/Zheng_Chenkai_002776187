@@ -4,6 +4,13 @@
  */
 package UI;
 
+import BasicModel.cityDirectory;
+import BasicModel.communityDirectory;
+import BasicModel.personDirectory;
+import BasicModel.userDirectory;
+import Doctor.doctorDirectory;
+import Doctor.encounterHistory;
+import Hospital.hospitalDirectory;
 import Patient.Patient;
 import Patient.patientDirectory;
 
@@ -18,9 +25,22 @@ public class patientFrame extends javax.swing.JFrame {
      */
 
     patientDirectory pDirectory;
+    doctorDirectory dDirectory;
+    personDirectory personDirectory;
+    userDirectory uDirectory;
+    communityDirectory comDirectory;
+    encounterHistory eHistory;
+    hospitalDirectory hDirectory;
+    cityDirectory cityDirectory;
     Patient currentPatient;
-    public patientFrame() {
+    
+    public patientFrame(patientDirectory pDirectory) {
         initComponents();
+        this.pDirectory=pDirectory;
+    }
+
+    private patientFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -193,6 +213,7 @@ public class patientFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        currentPatient = pDirectory.getHistory().get(0);
         patient_info Ppanel=new patient_info(currentPatient);
         jSplitPane1.setRightComponent(Ppanel);
     }//GEN-LAST:event_jButton4ActionPerformed

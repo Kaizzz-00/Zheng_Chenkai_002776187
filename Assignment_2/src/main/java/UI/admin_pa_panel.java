@@ -4,7 +4,14 @@
  */
 package UI;
 
+import Patient.Patient;
 import Patient.patientDirectory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -15,10 +22,12 @@ public class admin_pa_panel extends javax.swing.JPanel {
     /**
      * Creates new form admin_pa_panel
      */
-    patientDirectory pHistory;
+    patientDirectory pDirectory;
+    
     public admin_pa_panel(patientDirectory pHistory) {
         initComponents();
-        this.pHistory=pHistory;
+        this.pDirectory=pHistory;
+        displayTable();
         
     }
 
@@ -37,7 +46,7 @@ public class admin_pa_panel extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        txtPhone = new javax.swing.JTextField();
+        txtDOB = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -50,7 +59,7 @@ public class admin_pa_panel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         txtID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        txtDOB = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -59,18 +68,18 @@ public class admin_pa_panel extends javax.swing.JPanel {
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        txtPID1 = new javax.swing.JTextField();
+        txtBP = new javax.swing.JTextField();
         txtPID2 = new javax.swing.JTextField();
-        txtPID3 = new javax.swing.JTextField();
-        txtPID4 = new javax.swing.JTextField();
+        txtPR = new javax.swing.JTextField();
+        txtRR = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
-        txtPID5 = new javax.swing.JTextField();
-        txtPID6 = new javax.swing.JTextField();
+        txtEndate = new javax.swing.JTextField();
+        txtEndoc = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        txtPID7 = new javax.swing.JTextField();
+        txtEnhos = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
-        txtPID8 = new javax.swing.JTextField();
+        txtTemp = new javax.swing.JTextField();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -135,8 +144,18 @@ public class admin_pa_panel extends javax.swing.JPanel {
         jLabel10.setText("Address");
 
         jButton1.setText("Upadate");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Create");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Delete");
 
@@ -148,9 +167,9 @@ public class admin_pa_panel extends javax.swing.JPanel {
 
         jLabel17.setText("RespirationRate");
 
-        txtPID1.addActionListener(new java.awt.event.ActionListener() {
+        txtBP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID1ActionPerformed(evt);
+                txtBPActionPerformed(evt);
             }
         });
 
@@ -160,15 +179,15 @@ public class admin_pa_panel extends javax.swing.JPanel {
             }
         });
 
-        txtPID3.addActionListener(new java.awt.event.ActionListener() {
+        txtPR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID3ActionPerformed(evt);
+                txtPRActionPerformed(evt);
             }
         });
 
-        txtPID4.addActionListener(new java.awt.event.ActionListener() {
+        txtRR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID4ActionPerformed(evt);
+                txtRRActionPerformed(evt);
             }
         });
 
@@ -176,23 +195,23 @@ public class admin_pa_panel extends javax.swing.JPanel {
 
         jLabel19.setText("EnDoctor");
 
-        txtPID5.addActionListener(new java.awt.event.ActionListener() {
+        txtEndate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID5ActionPerformed(evt);
+                txtEndateActionPerformed(evt);
             }
         });
 
-        txtPID6.addActionListener(new java.awt.event.ActionListener() {
+        txtEndoc.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID6ActionPerformed(evt);
+                txtEndocActionPerformed(evt);
             }
         });
 
         jLabel20.setText("EnHospital");
 
-        txtPID7.addActionListener(new java.awt.event.ActionListener() {
+        txtEnhos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID7ActionPerformed(evt);
+                txtEnhosActionPerformed(evt);
             }
         });
 
@@ -203,9 +222,9 @@ public class admin_pa_panel extends javax.swing.JPanel {
             }
         });
 
-        txtPID8.addActionListener(new java.awt.event.ActionListener() {
+        txtTemp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPID8ActionPerformed(evt);
+                txtTempActionPerformed(evt);
             }
         });
 
@@ -225,11 +244,11 @@ public class admin_pa_panel extends javax.swing.JPanel {
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(33, 33, 33)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtDOB, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPhone, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -243,20 +262,20 @@ public class admin_pa_panel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel18)
                                 .addGap(57, 57, 57)
-                                .addComponent(txtPID5))
+                                .addComponent(txtEndate))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(26, 26, 26)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPID7)
-                                    .addComponent(txtPID6)))
+                                    .addComponent(txtEnhos)
+                                    .addComponent(txtEndoc)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(99, 99, 99)
-                                        .addComponent(txtPID1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -264,15 +283,15 @@ public class admin_pa_panel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtPID8, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(71, 71, 71)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel16, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(34, 34, 34)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPID4, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(txtPID3)))))
+                                    .addComponent(txtRR, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(txtPR)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel11)
@@ -329,12 +348,11 @@ public class admin_pa_panel extends javax.swing.JPanel {
                                         .addComponent(txtPID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPID3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPR, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPID1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtBP, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -342,32 +360,33 @@ public class admin_pa_panel extends javax.swing.JPanel {
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                                .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(txtDOB, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                 .addComponent(txtPID2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                 .addGap(0, 0, Short.MAX_VALUE)
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(txtPID4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(txtRR, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                                         .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                                             .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                            .addComponent(txtPID8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                                            .addComponent(txtTemp, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                            .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jLabel18, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtPID5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                            .addComponent(txtEndate, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
-                                .addComponent(txtPID7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtEnhos, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPID6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtEndoc, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -403,43 +422,233 @@ public class admin_pa_panel extends javax.swing.JPanel {
         // TODO add yur handling code here:
     }//GEN-LAST:event_txtGenderActionPerformed
 
-    private void txtPID1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID1ActionPerformed
+    private void txtBPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBPActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID1ActionPerformed
+    }//GEN-LAST:event_txtBPActionPerformed
 
     private void txtPID2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPID2ActionPerformed
 
-    private void txtPID3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID3ActionPerformed
+    private void txtPRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID3ActionPerformed
+    }//GEN-LAST:event_txtPRActionPerformed
 
-    private void txtPID4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID4ActionPerformed
+    private void txtRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRRActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID4ActionPerformed
+    }//GEN-LAST:event_txtRRActionPerformed
 
-    private void txtPID5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID5ActionPerformed
+    private void txtEndateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndateActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID5ActionPerformed
+    }//GEN-LAST:event_txtEndateActionPerformed
 
-    private void txtPID6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID6ActionPerformed
+    private void txtEndocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndocActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID6ActionPerformed
+    }//GEN-LAST:event_txtEndocActionPerformed
 
-    private void txtPID7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID7ActionPerformed
+    private void txtEnhosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEnhosActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID7ActionPerformed
+    }//GEN-LAST:event_txtEnhosActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Patient sp=(Patient) model.getValueAt(slctRowIndex,0);
+        txtName.setText(sp.getName());
+        txtID.setText(sp.getID());
+        txtDOB.setText(String.valueOf(sp.getDOB()));
+        txtPhone.setText(sp.getPhone());
+        txtEmail.setText(sp.getEmail());
+        txtAge.setText(String.valueOf(sp.getAge()));
+        txtGender.setText(sp.getGender());
+        txtPID.setText(String.valueOf(sp.getPatientID()));
+        txtAddress.setText(sp.getAddress());
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    private void txtPID8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPID8ActionPerformed
+    private void txtTempActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTempActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtPID8ActionPerformed
+    }//GEN-LAST:event_txtTempActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        
+        
+        
+        boolean isTrue=true;
+        String name= txtName.getText();
+        String id=txtID.getText();
+        
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        Integer age=Integer.valueOf(txtAge.getText()); // need validation
+        
+        Patient newP=pDirectory.addnewPatient();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newP.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+        String gender=txtGender.getText();
+        String address=txtAddress.getText();
+        Integer patientID=Integer.valueOf(txtPID.getText());
+        
+        /*Integer bloodpressure=Integer.valueOf(txtBP.getText());
+        Integer pulserate=Integer.valueOf(txtPR.getText());
+        Double temperature=Double.valueOf(txtTemp.getText());
+        Integer respiratoryrate=Integer.valueOf(txtRR.getText());*/
+       
+        
+        /*String stringEndate=txtEndate.getText();
+        
+        SimpleDateFormat sdf2=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newP.setOwnEncounter(sdf.parse(stringEndate));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtEndate.setText("");
+            return;
+        }*/
+        String endoc=txtEndoc.getText();
+        String enhos=txtEnhos.getText();
+        
+        newP.setName(name);
+        newP.setID(id);
+        newP.setPhone(phone);
+        newP.setEmail(email);
+        newP.setAge(age);
+        newP.setGender(gender);
+        newP.setAddress(address);
+        newP.setPatientID(patientID);
+        
+        JOptionPane.showMessageDialog(this, "New Patient Added.");
+        txtName.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtID.setText("");
+        txtAddress.setText("");
+        txtPhone.setText("");
+        txtPID.setText("");
+        txtDOB.setText("");
+        txtEmail.setText("");
+        displayTable();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Patient newP=(Patient) model.getValueAt(slctRowIndex,0);
+        
+        String name= txtName.getText();
+        String id=txtID.getText();
+        
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        Integer age=Integer.valueOf(txtAge.getText()); // need validation
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newP.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+        String gender=txtGender.getText();
+        String address=txtAddress.getText();
+        Integer patientID=Integer.valueOf(txtPID.getText());
+        
+        newP.setName(name);
+        newP.setID(id);
+        newP.setPhone(phone);
+        newP.setEmail(email);
+        newP.setAge(age);
+        newP.setGender(gender);
+        newP.setAddress(address);
+        newP.setPatientID(patientID);
+        
+        JOptionPane.showMessageDialog(this, "Patient Info Updated.");
+        txtName.setText("");
+        txtAge.setText("");
+        txtGender.setText("");
+        txtID.setText("");
+        txtAddress.setText("");
+        txtPhone.setText("");
+        txtPID.setText("");
+        txtDOB.setText("");
+        txtEmail.setText("");
+        displayTable();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void displayTable() {
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Patient pa:pDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=pa;
+            row[1]= pa.getName();
+            row[2]= pa.getID();
+            row[3]= pa.getDOB();
+            row[4]= pa.getGender();
+            row[5]= pa.getPhone();
+            
+            row[6]= pa.getEmail();
+            row[7]= pa.getAddress();
+            row[8]= pa.getPatientID();
+            row[9]= pa.getAge();
+            row[10]= pa.getGender();
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -466,20 +675,20 @@ public class admin_pa_panel extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtAge;
+    private javax.swing.JTextField txtBP;
     private javax.swing.JTextField txtDOB;
     private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtEndate;
+    private javax.swing.JTextField txtEndoc;
+    private javax.swing.JTextField txtEnhos;
     private javax.swing.JTextField txtGender;
     private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPID;
-    private javax.swing.JTextField txtPID1;
     private javax.swing.JTextField txtPID2;
-    private javax.swing.JTextField txtPID3;
-    private javax.swing.JTextField txtPID4;
-    private javax.swing.JTextField txtPID5;
-    private javax.swing.JTextField txtPID6;
-    private javax.swing.JTextField txtPID7;
-    private javax.swing.JTextField txtPID8;
+    private javax.swing.JTextField txtPR;
     private javax.swing.JTextField txtPhone;
+    private javax.swing.JTextField txtRR;
+    private javax.swing.JTextField txtTemp;
     // End of variables declaration//GEN-END:variables
 }

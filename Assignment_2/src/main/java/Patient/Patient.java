@@ -19,6 +19,14 @@ public class Patient extends Person {
     private vitalSigns ownVital; //have their own vitals 
     private Encounter ownEncounter;// can edit their own encounters
 
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
     public Integer getAge() {
         return age;
     }

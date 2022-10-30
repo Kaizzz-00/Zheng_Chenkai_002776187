@@ -4,6 +4,7 @@
  */
 package UI;
 
+import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
 import BasicModel.personDirectory;
 import BasicModel.userDirectory;
@@ -26,20 +27,27 @@ public class loginFrame extends javax.swing.JFrame {
     doctorDirectory dDirectory;
     personDirectory personDirectory;
     userDirectory uDirectory;
-    communityDirectory cDirectory;
+    communityDirectory comDirectory;
     encounterHistory eHistory;
     hospitalDirectory hDirectory;
+    cityDirectory cityDirectory;
     
+     public loginFrame() {
+        initComponents();
+        pDirectory=new patientDirectory();
+        dDirectory=new doctorDirectory();
+        uDirectory=new userDirectory();
+        comDirectory=new communityDirectory();
+        eHistory=new encounterHistory();
+        hDirectory=new hospitalDirectory();
+        cityDirectory=new cityDirectory();
+       
+    }
     //adminHistory aHistory;
     //sysAdminFrame sysAdminFrame=new sysAdminFrame("");
-    patientFrame patientFrame=new patientFrame();
-    doctorFrame doctorFrame=new doctorFrame();
-    sysAdminFrame sysAdminFrame=new sysAdminFrame();
-    hosAdminFrame hosAdminFrame=new hosAdminFrame();
-    comAdminFrame comAdminFrame=new comAdminFrame();
-    public loginFrame() {
-        initComponents();
-    }
+
+     
+   
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -193,7 +201,13 @@ public class loginFrame extends javax.swing.JFrame {
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         Object idslct;
         idslct=idBox.getSelectedItem();
-
+        sysAdminFrame sysAdminFrame=new sysAdminFrame(pDirectory,dDirectory,uDirectory,comDirectory,eHistory,hDirectory,cityDirectory);
+        patientFrame patientFrame=new patientFrame(pDirectory);
+        doctorFrame doctorFrame=new doctorFrame();
+     
+        hosAdminFrame hosAdminFrame=new hosAdminFrame();
+        comAdminFrame comAdminFrame=new comAdminFrame();
+        
         //JOptionPane.showMessageDialog(this, idslct.toString());
         if (idslct.toString()=="System Admin"){
             //sysAdminFrame.setUserIdentity("Sys");

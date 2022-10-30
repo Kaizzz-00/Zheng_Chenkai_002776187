@@ -4,7 +4,9 @@
  */
 package UI;
 
+import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
+import BasicModel.personDirectory;
 import BasicModel.userDirectory;
 import Doctor.doctorDirectory;
 import Doctor.encounterHistory;
@@ -22,17 +24,32 @@ public class sysAdminFrame extends javax.swing.JFrame {
      * Creates new form sysAdminFrame
      */
     
-    communityDirectory cDirectory;
-    doctorDirectory dDirectory;
     patientDirectory pDirectory;
-    hospitalDirectory hDirectory;
-    encounterHistory eHistory;
+    doctorDirectory dDirectory;
+    personDirectory personDirectory;
     userDirectory uDirectory;
-    
-    public String UserIdentity;
-    public sysAdminFrame() {
-        initComponents();
+    communityDirectory comDirectory;
+    encounterHistory eHistory;
+    hospitalDirectory hDirectory;
+    cityDirectory cityDirectory;
 
+    
+    public sysAdminFrame
+        (
+                patientDirectory pDirectory,doctorDirectory dDirectory,userDirectory uDirectory,
+                communityDirectory comDirectory,encounterHistory eHistory,hospitalDirectory hDirectory,cityDirectory cityDirectory
+        ) 
+                
+        {
+        initComponents();
+        this.pDirectory=pDirectory;
+        this.dDirectory=dDirectory;
+        this.uDirectory=uDirectory;
+        this.comDirectory=comDirectory;
+        this.eHistory=eHistory;
+        this.hDirectory=hDirectory;
+        this.cityDirectory=cityDirectory;
+        
         //JOptionPane.showMessageDialog(this, identity);
         /*comBtn.setVisible(false);
         userBtn.setVisible(false);
@@ -46,13 +63,10 @@ public class sysAdminFrame extends javax.swing.JFrame {
         
     }
 
-    public String getUserIdentity() {
-        return UserIdentity;
+    private sysAdminFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
-    public void setUserIdentity(String UserIdentity) {
-        this.UserIdentity = UserIdentity;
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -229,7 +243,7 @@ public class sysAdminFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_encBtnActionPerformed
 
     private void comBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBtnActionPerformed
-        admin_com_panel companel=new admin_com_panel(cDirectory);
+        admin_com_panel companel=new admin_com_panel(comDirectory);
         jSplitPane1.setRightComponent(companel);
     }//GEN-LAST:event_comBtnActionPerformed
 
