@@ -5,6 +5,11 @@
 package UI;
 
 import Doctor.Doctor;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -48,9 +53,9 @@ public class doctor_info extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        txtDoctorID = new javax.swing.JTextField();
+        txtDID = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        txtID1 = new javax.swing.JTextField();
+        txtDep = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
 
         viewBtn.setText("View Edit");
@@ -140,8 +145,8 @@ public class doctor_info extends javax.swing.JPanel {
                                     .addComponent(jLabel12))
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtDoctorID, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
-                                    .addComponent(txtID1, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                    .addComponent(txtDID, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
+                                    .addComponent(txtDep, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -182,9 +187,9 @@ public class doctor_info extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtDID, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtID1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDep, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(110, 110, 110)
@@ -202,10 +207,64 @@ public class doctor_info extends javax.swing.JPanel {
         txtPhone.setEditable(true);
         txtEmail.setEditable(true);
         txtAddress.setEditable(true);
+        txtDID.setEditable(false);
+        txtDep.setEditable(false);
+        
+        txtName.setText(currentDoctor.getName());
+        txtID.setText(currentDoctor.getID());
+        
+        
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String stringofDOB = formatter.format(currentDoctor.getDOB());
+        txtDOB.setText(stringofDOB);
+        
+        txtPhone.setText(currentDoctor.getPhone());
+        txtEmail.setText(currentDoctor.getEmail());
+        txtAddress.setText(currentDoctor.getAddress());
+        txtDID.setText(currentDoctor.getDoctorID());
+        txtDep.setText(currentDoctor.getDepartment());
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
+        String name= txtName.getText();
+        String id=txtID.getText();
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            currentDoctor.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+        
+        String address=txtAddress.getText();
+        
+        currentDoctor.setName(name);
+        currentDoctor.setID(id);
+        currentDoctor.setPhone(phone);
+        currentDoctor.setEmail(email);
+        
+        currentDoctor.setAddress(address);
+        
+        JOptionPane.showMessageDialog(this, "Patient Info Updated.");
     }//GEN-LAST:event_updateBtnActionPerformed
 
 
@@ -222,11 +281,11 @@ public class doctor_info extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JTextField txtAddress;
+    private javax.swing.JTextField txtDID;
     private javax.swing.JTextField txtDOB;
-    private javax.swing.JTextField txtDoctorID;
+    private javax.swing.JTextField txtDep;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtID1;
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JButton updateBtn;

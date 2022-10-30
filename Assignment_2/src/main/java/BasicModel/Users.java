@@ -37,6 +37,9 @@ public class Users {
     public void setUserIdentity(String userIdentity) {
         this.userIdentity = userIdentity;
     }
-    
+    @Override
+    public String toString(){
+        return userName;
+    }
     
 }

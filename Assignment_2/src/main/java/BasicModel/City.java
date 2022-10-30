@@ -36,5 +36,8 @@ public class City {
     public void setZipcode(String zipcode) {
         this.zipcode = zipcode;
     }
-    
+    @Override
+    public String toString(){
+    return cityName;
+    }
 }

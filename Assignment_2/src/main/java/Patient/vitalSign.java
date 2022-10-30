@@ -8,7 +8,7 @@ import java.util.Date;
  *
  * @author kai
  */
-public class vitalSigns {
+public class vitalSign {
     private double temperature;
     private double bloodPressure;
     private int pulseRate;

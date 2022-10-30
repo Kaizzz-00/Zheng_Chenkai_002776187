@@ -25,4 +25,15 @@ public class userDirectory {
         this.directory = directory;
     }
     
+    public Users addnewUser(){
+        Users newUser= new Users();
+        directory.add(newUser);
+        return newUser;
+        // instead of add profile manually to Array, use this method to history and return reference 
+    }
+    
+    public void deleteUser(Users selectedUser){
+        directory.remove(selectedUser);
+    }// create a void to delete profile
+    
 }

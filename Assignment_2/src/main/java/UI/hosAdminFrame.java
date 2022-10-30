@@ -4,7 +4,9 @@
  */
 package UI;
 
+import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
+import BasicModel.houseDirectory;
 import BasicModel.userDirectory;
 import Doctor.doctorDirectory;
 import Doctor.encounterHistory;
@@ -20,15 +22,29 @@ public class hosAdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form hosAdminFrame
      */
-    communityDirectory cDirectory;
+    communityDirectory comDirectory;
     doctorDirectory dDirectory;
     patientDirectory pDirectory;
     hospitalDirectory hDirectory;
     encounterHistory eHistory;
     userDirectory uDirectory;
+    cityDirectory cityDirectory;
+    houseDirectory houseDirectory;
     
-    public hosAdminFrame() {
+    public hosAdminFrame(patientDirectory pDirectory,doctorDirectory dDirectory,
+                communityDirectory comDirectory,encounterHistory eHistory,hospitalDirectory hDirectory,cityDirectory cityDirectory,houseDirectory houseDirectory) {
         initComponents();
+        this.pDirectory=pDirectory;
+        this.dDirectory=dDirectory;
+        this.comDirectory=comDirectory;
+        this.cityDirectory=cityDirectory;
+        this.eHistory=eHistory;
+        this.hDirectory=hDirectory;
+        this.houseDirectory=houseDirectory;
+    }
+
+    private hosAdminFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -48,6 +64,7 @@ public class hosAdminFrame extends javax.swing.JFrame {
         hosBtn = new javax.swing.JButton();
         encBtn = new javax.swing.JButton();
         checkBtn1 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         workPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,14 +109,19 @@ public class hosAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel2.setText("Welcome HosAdmin!");
+
         javax.swing.GroupLayout ctrlPanelLayout = new javax.swing.GroupLayout(ctrlPanel);
         ctrlPanel.setLayout(ctrlPanelLayout);
         ctrlPanelLayout.setHorizontalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ctrlPanelLayout.createSequentialGroup()
                 .addGap(35, 35, 35)
-                .addComponent(jLabel1)
-                .addContainerGap(38, Short.MAX_VALUE))
+                .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addContainerGap(32, Short.MAX_VALUE))
             .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(ctrlPanelLayout.createSequentialGroup()
                     .addGap(32, 32, 32)
@@ -114,7 +136,9 @@ public class hosAdminFrame extends javax.swing.JFrame {
         ctrlPanelLayout.setVerticalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ctrlPanelLayout.createSequentialGroup()
-                .addGap(40, 40, 40)
+                .addGap(16, 16, 16)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addContainerGap(542, Short.MAX_VALUE))
             .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -138,7 +162,7 @@ public class hosAdminFrame extends javax.swing.JFrame {
         workPanel.setLayout(workPanelLayout);
         workPanelLayout.setHorizontalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 795, Short.MAX_VALUE)
+            .addGap(0, 895, Short.MAX_VALUE)
         );
         workPanelLayout.setVerticalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -162,23 +186,23 @@ public class hosAdminFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void patientBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_patientBtnActionPerformed
-        admin_pa_panel Patientpanel=new admin_pa_panel(pDirectory);
+        admin_pa_panel Patientpanel=new admin_pa_panel(pDirectory,dDirectory,houseDirectory,uDirectory);
         jSplitPane1.setRightComponent(Patientpanel);
     }//GEN-LAST:event_patientBtnActionPerformed
 
     private void doctorBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_doctorBtnActionPerformed
 
-        admin_doc_panel docpanel=new admin_doc_panel(dDirectory);
+        admin_doc_panel docpanel=new admin_doc_panel(dDirectory,hDirectory,pDirectory,uDirectory);
         jSplitPane1.setRightComponent(docpanel);
     }//GEN-LAST:event_doctorBtnActionPerformed
 
     private void hosBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hosBtnActionPerformed
-        admin_hos_panel hospanel=new admin_hos_panel(hDirectory);
+        admin_hos_panel hospanel=new admin_hos_panel(hDirectory,cityDirectory,comDirectory);
         jSplitPane1.setRightComponent(hospanel);
     }//GEN-LAST:event_hosBtnActionPerformed
 
     private void encBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encBtnActionPerformed
-        admin_en_panel enpanel=new admin_en_panel(eHistory);
+        admin_en_panel enpanel=new admin_en_panel(eHistory,dDirectory,pDirectory,hDirectory);
         jSplitPane1.setRightComponent(enpanel);
     }//GEN-LAST:event_encBtnActionPerformed
 
@@ -228,6 +252,7 @@ public class hosAdminFrame extends javax.swing.JFrame {
     private javax.swing.JButton encBtn;
     private javax.swing.JButton hosBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JButton patientBtn;
     private javax.swing.JPanel workPanel;

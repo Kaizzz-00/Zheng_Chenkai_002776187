@@ -4,15 +4,25 @@
  */
 package UI;
 
+import BasicModel.Application;
 import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
 import BasicModel.personDirectory;
 import BasicModel.userDirectory;
+import Doctor.Doctor;
+import Doctor.Encounter;
 import Doctor.doctorDirectory;
 import Doctor.encounterHistory;
+import Hospital.Hospital;
 import Hospital.hospitalDirectory;
 import Patient.Patient;
 import Patient.patientDirectory;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -33,10 +43,29 @@ public class patientFrame extends javax.swing.JFrame {
     hospitalDirectory hDirectory;
     cityDirectory cityDirectory;
     Patient currentPatient;
+    String pid;
     
-    public patientFrame(patientDirectory pDirectory) {
+
+            
+    public patientFrame(patientDirectory pDirectory,doctorDirectory dDirectory,hospitalDirectory hDirectory,encounterHistory eHistory,userDirectory uDirectory,String pid) {
         initComponents();
         this.pDirectory=pDirectory;
+        this.dDirectory=dDirectory;
+        this.hDirectory=hDirectory;
+        this.eHistory=eHistory;
+        this.uDirectory=uDirectory;
+        this.pid=pid;
+        for (Patient pt:pDirectory.getHistory()){
+            if (pt.getPatientID().equals(pid))
+            {
+                currentPatient=pt;
+            }
+        }
+        pLabel.setText(currentPatient.getName());
+        displayHos();
+        displayDoc();
+        displayEn();
+        displayApp();
     }
 
     private patientFrame() {
@@ -54,34 +83,35 @@ public class patientFrame extends javax.swing.JFrame {
 
         jSplitPane1 = new javax.swing.JSplitPane();
         ctrlPanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        editBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        crBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtDate = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        pLabel = new javax.swing.JLabel();
+        backBtn1 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        appTable = new javax.swing.JTable();
         workPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        hosTable = new javax.swing.JTable();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable2 = new javax.swing.JTable();
+        docTable = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable3 = new javax.swing.JTable();
+        enTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jSplitPane1.setDividerLocation(200);
 
-        jButton1.setText("View Hospitals");
-
-        jButton2.setText("View Doctors");
-
-        jButton3.setText("View Encounters");
-
-        jButton4.setText("Edit Personal Info");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        editBtn.setText("Edit Personal Info");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                editBtnActionPerformed(evt);
             }
         });
 
@@ -95,44 +125,119 @@ public class patientFrame extends javax.swing.JFrame {
             }
         });
 
+        crBtn.setText("Create Application");
+        crBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                crBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabel2.setText("Select Doctor And Input Date  ");
+
+        jLabel3.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabel3.setText("To Create Encounter Application");
+
+        jLabel4.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabel4.setText("-------------------------------------");
+
+        txtDate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDateActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
+        jLabel5.setText("Date In Format yyyy-mm-dd");
+
+        pLabel.setFont(new java.awt.Font("Helvetica Neue", 0, 18)); // NOI18N
+        pLabel.setText(" ");
+
+        backBtn1.setText("Back To View");
+        backBtn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtn1ActionPerformed(evt);
+            }
+        });
+
+        appTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Doctor", "Date"
+            }
+        ));
+        jScrollPane4.setViewportView(appTable);
+
         javax.swing.GroupLayout ctrlPanelLayout = new javax.swing.GroupLayout(ctrlPanel);
         ctrlPanel.setLayout(ctrlPanelLayout);
         ctrlPanelLayout.setHorizontalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                        .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(editBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(backBtn1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(crBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(15, 15, 15))))
             .addGroup(ctrlPanelLayout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)
-                    .addGroup(ctrlPanelLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addComponent(jLabel1))
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE))
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pLabel)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                .addGap(0, 15, Short.MAX_VALUE)
+                .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)))
         );
         ctrlPanelLayout.setVerticalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(91, 91, 91)
-                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(59, 59, 59))
+                .addGap(30, 30, 30)
+                .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtDate, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(crBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 92, Short.MAX_VALUE)
+                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(backBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(46, 46, 46)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
         );
 
         jSplitPane1.setLeftComponent(ctrlPanel);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        hosTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -140,25 +245,25 @@ public class patientFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Hospital Name", "Hospital Address", "City", "Community"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(hosTable);
 
-        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+        docTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Doctor Name", "Doctor ID", "Department"
             }
         ));
-        jScrollPane2.setViewportView(jTable2);
+        jScrollPane2.setViewportView(docTable);
 
-        jTable3.setModel(new javax.swing.table.DefaultTableModel(
+        enTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -166,10 +271,10 @@ public class patientFrame extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "enDoctor", "enHospital", "enDate", "enDiagnose"
             }
         ));
-        jScrollPane3.setViewportView(jTable3);
+        jScrollPane3.setViewportView(enTable);
 
         javax.swing.GroupLayout workPanelLayout = new javax.swing.GroupLayout(workPanel);
         workPanel.setLayout(workPanelLayout);
@@ -182,7 +287,7 @@ public class patientFrame extends javax.swing.JFrame {
                     .addGroup(workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jScrollPane2)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 733, Short.MAX_VALUE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         workPanelLayout.setVerticalGroup(
             workPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,17 +317,160 @@ public class patientFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        currentPatient = pDirectory.getHistory().get(0);
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        
         patient_info Ppanel=new patient_info(currentPatient);
         jSplitPane1.setRightComponent(Ppanel);
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_editBtnActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         this.setVisible(false);
        // loginFrame.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void crBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crBtnActionPerformed
+        String sdate=txtDate.getText();
+        Application newA=new Application();
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            newA.setTime(sdf.parse(sdate));
+            
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDate.setText("");
+            return;
+        }
+        txtDate.setText("");
+        
+        int slctRowIndex= docTable.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Doctor To Apply.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+        Doctor newD=(Doctor) model.getValueAt(slctRowIndex,0);
+        newA.setDoctor(newD);
+        
+        currentPatient.setApplication(newA);
+        
+        JOptionPane.showMessageDialog(this, "Application Added");
+        displayApp();
+    }//GEN-LAST:event_crBtnActionPerformed
+
+    private void txtDateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDateActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDateActionPerformed
+
+    private void backBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtn1ActionPerformed
+        jSplitPane1.setRightComponent(workPanel);
+    }//GEN-LAST:event_backBtn1ActionPerformed
+    
+    private void displayHos() {
+        DefaultTableModel model= (DefaultTableModel) hosTable.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Hospital ho:hDirectory.getDirectory()){
+            Object[] row = new Object[11];
+            row[0]=ho;
+            //row[1]= pa.getName();
+            row[1]= ho.getHosAddress();
+            //hos got no city
+            
+            row[2]= ho.getCommunity().getCity().getCityName();
+            row[3]= ho.getCommunity().getComName();
+ 
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
+    private void displayDoc() {
+        DefaultTableModel model= (DefaultTableModel) docTable.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Doctor dc:dDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=dc;
+            //row[1]= pa.getName();
+            row[1]= dc.getDoctorID();
+            row[2]= dc.getDepartment();
+            //row[3]= dc.getDctEncounter();
+ 
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
+    private void displayEn() {
+        DefaultTableModel model= (DefaultTableModel) enTable.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Encounter en:eHistory.getHistory()){
+            if(en.getEnPatient().getPatientID().equals(currentPatient.getPatientID()))
+            {
+            Object[] row = new Object[11];
+            row[0]=en;
+            //row[1]= pa.getName();
+            row[1]= en.getEnHospital().getHosName();
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String stringd = formatter.format(en.getEnDate());
+            row[2]= stringd;
+            row[3]= en.getEnDiagnose();
+ 
+            // use a small array to display each attributes
+            model.addRow(row);
+            }
+            
+
+            
+            
+            
+        }
+    }
+    
+    private void displayApp() {
+        DefaultTableModel model= (DefaultTableModel) appTable.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+            if(currentPatient.getApplication()!=null)
+            {
+            Object[] row = new Object[11];
+            row[0]=currentPatient.getApplication().getDoctor();
+            //row[1]= pa.getName();
+            
+            
+            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+            String stringd = formatter.format(currentPatient.getApplication().getTime());
+            row[1]= stringd;
+           
+ 
+            // use a small array to display each attributes
+            model.addRow(row);
+            }
+            
+
+            
+            
+            
+        
+    }
     /**
      * @param args the command line arguments
      */
@@ -259,20 +507,27 @@ public class patientFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable appTable;
+    private javax.swing.JButton backBtn1;
+    private javax.swing.JButton crBtn;
     private javax.swing.JPanel ctrlPanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JTable docTable;
+    private javax.swing.JButton editBtn;
+    private javax.swing.JTable enTable;
+    private javax.swing.JTable hosTable;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSplitPane jSplitPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTable2;
-    private javax.swing.JTable jTable3;
+    private javax.swing.JLabel pLabel;
+    private javax.swing.JTextField txtDate;
     private javax.swing.JPanel workPanel;
     // End of variables declaration//GEN-END:variables
 }

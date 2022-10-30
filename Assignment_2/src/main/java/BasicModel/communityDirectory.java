@@ -25,4 +25,15 @@ public class communityDirectory {
         this.history = history;
     }
     
+     public Community addnewCommunity(){
+        Community newCom= new Community();
+        history.add(newCom);
+        return newCom;
+        // instead of add profile manually to Array, use this method to history and return reference 
+    }
+    
+    public void deleteCommunity(Community selectedCommunity){
+        history.remove(selectedCommunity);
+    }// create a void to delete profile
+    
 }

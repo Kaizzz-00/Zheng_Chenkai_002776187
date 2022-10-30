@@ -4,7 +4,15 @@
  */
 package UI;
 
+import BasicModel.City;
+import BasicModel.Community;
+import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
+import java.text.SimpleDateFormat;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -16,9 +24,16 @@ public class admin_com_panel extends javax.swing.JPanel {
      * Creates new form admin_com_panel
      */
     communityDirectory cDirectory;
-    public admin_com_panel(communityDirectory cDirectory) {
+    cityDirectory cityDirectory;
+    public admin_com_panel(communityDirectory cDirectory,cityDirectory cityDirectory) {
         initComponents();
         this.cDirectory=cDirectory;
+        this.cityDirectory=cityDirectory;
+        displayTable();
+        displayTable2();
+        txtCity.setEditable(false);
+        txtState.setEditable(false);
+        txtZip.setEditable(false);
     }
 
     /**
@@ -31,26 +46,29 @@ public class admin_com_panel extends javax.swing.JPanel {
     private void initComponents() {
 
         createBtn = new javax.swing.JButton();
-        txtDoctorID = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         delBtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        txtID = new javax.swing.JTextField();
-        txtDepartment = new javax.swing.JTextField();
+        txtRoad = new javax.swing.JTextField();
         viewBtn = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         editBtn = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
+        txtCity = new javax.swing.JTextField();
+        txtState = new javax.swing.JTextField();
+        txtZip = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         createBtn.setText("Create");
-
-        txtDoctorID.addActionListener(new java.awt.event.ActionListener() {
+        createBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtDoctorIDActionPerformed(evt);
+                createBtnActionPerformed(evt);
             }
         });
 
@@ -68,8 +86,11 @@ public class admin_com_panel extends javax.swing.JPanel {
         });
 
         delBtn.setText("Delete");
-
-        jLabel6.setText("City");
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -77,8 +98,6 @@ public class admin_com_panel extends javax.swing.JPanel {
                 viewBtnActionPerformed(evt);
             }
         });
-
-        jLabel8.setText("Zipcode");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,45 +117,82 @@ public class admin_com_panel extends javax.swing.JPanel {
         jLabel2.setText("Community Name");
 
         editBtn.setText("Upadate");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "CityName", "State", "Zipcode"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
+
+        jLabel4.setText("The City");
+
+        jLabel5.setText("The State");
+
+        jLabel6.setText("The Zipcode");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(256, 256, 256)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(290, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel8))
+                                    .addComponent(jLabel3))
+                                .addGap(63, 63, 63)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtRoad, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)
+                                    .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 595, Short.MAX_VALUE)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtDepartment)
-                                    .addComponent(txtDoctorID, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtID, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
-                                    .addComponent(txtName, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(8, 8, 8))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(2, 2, 2)))))
                 .addGap(19, 19, 19))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(256, 256, 256)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -144,23 +200,25 @@ public class admin_com_panel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRoad, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDoctorID, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtDepartment, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,19 +228,188 @@ public class admin_com_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtDoctorIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDoctorIDActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtDoctorIDActionPerformed
-
     private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNameActionPerformed
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Community sc=(Community) model.getValueAt(slctRowIndex,0);
+
+        txtName.setText(sc.getComName());
+        txtRoad.setText(sc.getComRoad());
+        
+        City theCity=new City();
+        theCity=sc.getCity();
+        
+        txtCity.setText(theCity.getCityName());
+        txtState.setText(theCity.getState());
+        txtZip.setText(theCity.getZipcode());
+        
     }//GEN-LAST:event_viewBtnActionPerformed
 
+    private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
+        
+        int slctRowIndex= jTable2.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A City To Create.");
+            return;
+        }// if nothing was selected, then inform the user
 
+        DefaultTableModel model= (DefaultTableModel) jTable2.getModel();
+        City sc=(City) model.getValueAt(slctRowIndex,0);
+        
+        String cname=txtName.getText();
+        String croad=txtRoad.getText();
+        /*String ccity=txtCity.getText();
+        String czip=txtZip.getText();
+        String cstate=txtState.getText();
+        
+        if (!(czip.matches("[0-9]+") && czip.length() ==5 )) {
+            JOptionPane.showMessageDialog(this, "Valid Zipcode Required");
+            txtZip.setText(""); // validate the input email
+            return;
+        }
+        
+        City Comcity=new City();
+        Comcity.setCityName(ccity);
+        Comcity.setState(cstate);
+        Comcity.setZipcode(czip);*/
+        
+        Community newCom=cDirectory.addnewCommunity();
+        newCom.setComName(cname);
+        newCom.setComRoad(croad);
+        newCom.setCity(sc);
+        //newCom.setCity(Comcity);
+      
+        JOptionPane.showMessageDialog(this, "New Community Added");
+        txtName.setText("");
+        txtRoad.setText("");
+        
+        /*txtCity.setText("");
+        txtZip.setText("");
+        txtState.setText("");*/
+        displayTable();
+    }//GEN-LAST:event_createBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Community sc=(Community) model.getValueAt(slctRowIndex,0);
+        
+        
+        
+        int slctRowIndex2= jTable2.getSelectedRow();
+        if (slctRowIndex2<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A City To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model2= (DefaultTableModel) jTable2.getModel();
+        City sc2=(City) model2.getValueAt(slctRowIndex2,0);
+        
+        String cname=txtName.getText();
+        String croad=txtRoad.getText();
+        /*String ccity=txtCity.getText();
+        String czip=txtZip.getText();
+        String cstate=txtState.getText();
+        if (!(czip.matches("[0-9]+") && czip.length() ==5 )) {
+            JOptionPane.showMessageDialog(this, "Valid Zipcode Required");
+            txtZip.setText(""); // validate the input email
+            return;
+        }*/
+
+        /*City Comcity=new City();
+        Comcity.setCityName(ccity);
+        Comcity.setState(cstate);
+        Comcity.setZipcode(czip);*/
+        
+        sc.setComName(cname);
+        sc.setComRoad(croad);
+        sc.setCity(sc2);
+        //sc.setCity(Comcity);
+      
+        JOptionPane.showMessageDialog(this, "Community Profile Updated.");
+        txtName.setText("");
+        txtRoad.setText("");
+        
+        txtCity.setText("");
+        txtZip.setText("");
+        txtState.setText("");
+        displayTable();
+    }//GEN-LAST:event_editBtnActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        // TODO add your handling code here:
+         int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Delete.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Community selectedProfile=(Community) model.getValueAt(slctRowIndex,0);
+
+        cDirectory.deleteCommunity(selectedProfile);// to delete the selected profile, need to create a void
+        JOptionPane.showMessageDialog(this, "Selected Profile Deleted.");
+        displayTable();//refresh table
+    }//GEN-LAST:event_delBtnActionPerformed
+    private void displayTable() {
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
+        for (Community co:cDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=co;
+            //row[1]= pa.getName();
+            row[1]= co.getComRoad();
+            row[2]= co.getCity();
+            row[3]=co.getCity().getZipcode();
+            
+            
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
+    private void displayTable2() {
+        DefaultTableModel model= (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        
+        for (City ci:cityDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=ci;
+            //row[1]= pa.getName();
+            row[1]= ci.getState();
+            row[2]= ci.getZipcode();
+            
+            
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createBtn;
     private javax.swing.JButton delBtn;
@@ -190,14 +417,18 @@ public class admin_com_panel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtDepartment;
-    private javax.swing.JTextField txtDoctorID;
-    private javax.swing.JTextField txtID;
+    private javax.swing.JTable jTable2;
+    private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtName;
+    private javax.swing.JTextField txtRoad;
+    private javax.swing.JTextField txtState;
+    private javax.swing.JTextField txtZip;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

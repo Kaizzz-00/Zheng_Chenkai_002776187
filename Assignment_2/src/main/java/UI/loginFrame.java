@@ -4,13 +4,17 @@
  */
 package UI;
 
+import BasicModel.Users;
 import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
+import BasicModel.houseDirectory;
 import BasicModel.personDirectory;
 import BasicModel.userDirectory;
+import Doctor.Doctor;
 import Doctor.doctorDirectory;
 import Doctor.encounterHistory;
 import Hospital.hospitalDirectory;
+import Patient.Patient;
 import Patient.patientDirectory;
 import javax.swing.JOptionPane;
 
@@ -31,6 +35,11 @@ public class loginFrame extends javax.swing.JFrame {
     encounterHistory eHistory;
     hospitalDirectory hDirectory;
     cityDirectory cityDirectory;
+    houseDirectory houseDirectory;
+    Users loginUser;
+    
+    public String sysadUser="1";
+    public String sysadPw="1";
     
      public loginFrame() {
         initComponents();
@@ -41,7 +50,8 @@ public class loginFrame extends javax.swing.JFrame {
         eHistory=new encounterHistory();
         hDirectory=new hospitalDirectory();
         cityDirectory=new cityDirectory();
-       
+        houseDirectory=new houseDirectory();
+        loginUser=new Users();
     }
     //adminHistory aHistory;
     //sysAdminFrame sysAdminFrame=new sysAdminFrame("");
@@ -123,6 +133,15 @@ public class loginFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(377, 377, 377))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(clrBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56))))
             .addGroup(layout.createSequentialGroup()
                 .addGap(161, 161, 161)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -145,15 +164,6 @@ public class loginFrame extends javax.swing.JFrame {
                             .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pwPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 269, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(0, 196, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(377, 377, 377))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(clrBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(56, 56, 56))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,9 +187,9 @@ public class loginFrame extends javax.swing.JFrame {
                     .addComponent(clrBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(regBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 132, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 141, Short.MAX_VALUE)
                 .addComponent(clrBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108))
+                .addGap(124, 124, 124))
         );
 
         pack();
@@ -199,38 +209,144 @@ public class loginFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_regBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+        
+        String loginNa=txtUser.getText();
+        String loginPw=pwPassword.getText();
+        
+        
+        
+        
+        
         Object idslct;
         idslct=idBox.getSelectedItem();
-        sysAdminFrame sysAdminFrame=new sysAdminFrame(pDirectory,dDirectory,uDirectory,comDirectory,eHistory,hDirectory,cityDirectory);
-        patientFrame patientFrame=new patientFrame(pDirectory);
-        doctorFrame doctorFrame=new doctorFrame();
+        
+        
+        //sysAdminFrame sysAdminFrame=new sysAdminFrame(pDirectory,dDirectory,uDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory,this.loginUser);
+        //comAdminFrame comAdminFrame=new comAdminFrame(pDirectory,dDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory);
+        //hosAdminFrame hosAdminFrame=new hosAdminFrame(pDirectory,dDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory);
+        
+        //patientFrame patientFrame=new patientFrame(pDirectory,dDirectory,hDirectory,eHistory);
+        
      
-        hosAdminFrame hosAdminFrame=new hosAdminFrame();
-        comAdminFrame comAdminFrame=new comAdminFrame();
+        
+        
+        
         
         //JOptionPane.showMessageDialog(this, idslct.toString());
         if (idslct.toString()=="System Admin"){
             //sysAdminFrame.setUserIdentity("Sys");
-            sysAdminFrame.setVisible(true);
+            if (loginNa.equals(sysadUser) & loginPw.equals(sysadPw))
+            {   
+                this.loginUser.setUserIdentity("Sys");
+                txtUser.setText("");
+                pwPassword.setText("");
+                
+                sysAdminFrame sysAdminFrame=new sysAdminFrame(pDirectory,dDirectory,uDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory,this.loginUser);
+                sysAdminFrame.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "No Such SysAdmin In System");
+                txtUser.setText("");
+                pwPassword.setText("");
+                return;
+            }
             //this.setVisible(false);
         }
+        
         if (idslct.toString()=="Community Admin"){
+            boolean isin=false;
             //sysAdminFrame.setUserIdentity("Com");
-            comAdminFrame.setVisible(true);
+            for (Users us:uDirectory.getDirectory()){
+                if(loginNa.equals(us.getUserName()) & loginPw.equals(us.getUserPassword()) & idslct.toString().equals(us.getUserIdentity()))
+                {
+                    txtUser.setText("");
+                    pwPassword.setText("");
+                    comAdminFrame comAdminFrame=new comAdminFrame(pDirectory,dDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory);
+                    comAdminFrame.setVisible(true);
+                    isin=true;
+                }
+               
+            }
+            if (!isin){
+                JOptionPane.showMessageDialog(this, "No Such ComAdmin In System");
+                txtUser.setText("");
+                pwPassword.setText("");
+            }
+            
             //this.setVisible(false);
         }
+        
+        
         if (idslct.toString()=="Hospital Admin"){
+            boolean isin=false;
+            for (Users us:uDirectory.getDirectory())
+            {
+                if(loginNa.equals(us.getUserName()) & loginPw.equals(us.getUserPassword()) & idslct.toString().equals(us.getUserIdentity()))
+                {
+                     txtUser.setText("");
+                     pwPassword.setText("");
+                     hosAdminFrame hosAdminFrame=new hosAdminFrame(pDirectory,dDirectory,comDirectory,eHistory,hDirectory,cityDirectory,houseDirectory);
+                     hosAdminFrame.setVisible(true);
+                     isin=true;
+                }
+               
+            }
             //sysAdminFrame.setUserIdentity("Hos");
             //JOptionPane.showMessageDialog(this, idslct.toString());
-            hosAdminFrame.setVisible(true);
+           if (!isin){
+                JOptionPane.showMessageDialog(this, "No Such HosAdmin In System");
+                txtUser.setText("");
+                pwPassword.setText("");
+            }
             //this.setVisible(false);
         }
+        
+        
         if (idslct.toString()=="Patient"){
-            patientFrame.setVisible(true);
+            boolean isin=false;
+            for (Patient pt:pDirectory.getHistory())
+            {
+                if(loginNa.equals(pt.getMeUser().getUserName()) & loginPw.equals(pt.getMeUser().getUserPassword()) )
+                {
+                     txtUser.setText("");
+                     pwPassword.setText("");
+                     String pid=pt.getPatientID();
+                     patientFrame patientFrame=new patientFrame(pDirectory,dDirectory,hDirectory,eHistory,uDirectory,pid);
+                     patientFrame.setVisible(true);
+                     isin=true;
+                }
+                
+            }
+             if (!isin){
+                JOptionPane.showMessageDialog(this, "No Such Patient In System");
+                txtUser.setText("");
+                pwPassword.setText("");
+            }
             //this.setVisible(false);
         }
+        
+        
         if (idslct.toString()=="Doctor"){
-            doctorFrame.setVisible(true);
+            boolean isin=false;
+            for (Doctor dp:dDirectory.getHistory())
+            {
+                if(loginNa.equals(dp.getMeUser().getUserName()) & loginPw.equals(dp.getMeUser().getUserPassword()) )
+                {
+                     txtUser.setText("");
+                     pwPassword.setText("");
+                     String pid=dp.getDoctorID();
+                     doctorFrame doctorFrame = new doctorFrame(pDirectory,dDirectory,eHistory,hDirectory,pid);
+                     doctorFrame.setVisible(true);
+                     isin=true;
+                }
+                
+            }
+             if (!isin){
+                JOptionPane.showMessageDialog(this, "No Such Doctor In System");
+                txtUser.setText("");
+                pwPassword.setText("");
+            }
+           
             //this.setVisible(false);
         }
         

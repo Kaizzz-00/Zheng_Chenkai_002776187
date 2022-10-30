@@ -4,10 +4,14 @@
  */
 package UI;
 
+import BasicModel.Community;
+import BasicModel.cityDirectory;
+import BasicModel.communityDirectory;
 import Doctor.Doctor;
 import Hospital.Hospital;
 import Hospital.hospitalDirectory;
 import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,10 +24,19 @@ public class admin_hos_panel extends javax.swing.JPanel {
      * Creates new form admin_hos_panel
      */
     hospitalDirectory hDirectory;
+    cityDirectory cityDirectory;
+    communityDirectory comDirectory;
     
-    public admin_hos_panel( hospitalDirectory hDirectory) {
+    public admin_hos_panel( hospitalDirectory hDirectory,cityDirectory cityDirectory,
+    communityDirectory comDirectory) {
         initComponents();
         this.hDirectory=hDirectory;
+        this.cityDirectory=cityDirectory;
+        this.comDirectory=comDirectory;
+        displayTable();
+        displayCom();
+        txtCity.setEditable(false);
+        txtCom.setEditable(false);
     }
 
     /**
@@ -44,12 +57,15 @@ public class admin_hos_panel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtCommunity = new javax.swing.JTextField();
+        txtCom = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         delBtn = new javax.swing.JButton();
         viewBtn = new javax.swing.JButton();
         editBtn = new javax.swing.JButton();
         createBtn = new javax.swing.JButton();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable2 = new javax.swing.JTable();
 
         jLabel2.setText("Hospital Name");
 
@@ -92,6 +108,11 @@ public class admin_hos_panel extends javax.swing.JPanel {
         jLabel8.setText("Hospital Community");
 
         delBtn.setText("Delete");
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
 
         viewBtn.setText("View");
         viewBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -101,6 +122,11 @@ public class admin_hos_panel extends javax.swing.JPanel {
         });
 
         editBtn.setText("Upadate");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +134,21 @@ public class admin_hos_panel extends javax.swing.JPanel {
                 createBtnActionPerformed(evt);
             }
         });
+
+        jLabel12.setText("Community");
+
+        jTable2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Community", "Road", "City"
+            }
+        ));
+        jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -119,15 +160,6 @@ public class admin_hos_panel extends javax.swing.JPanel {
                 .addContainerGap(290, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -148,9 +180,22 @@ public class admin_hos_panel extends javax.swing.JPanel {
                                             .addComponent(jLabel8))
                                         .addGap(22, 22, 22)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtCom, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(viewBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
                 .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
@@ -159,23 +204,28 @@ public class admin_hos_panel extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCommunity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(2, 2, 2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtCom, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -195,34 +245,127 @@ public class admin_hos_panel extends javax.swing.JPanel {
 
     private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
         // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Hospital sh=(Hospital) model.getValueAt(slctRowIndex,0);
+        
+        txtName.setText(sh.getHosName());
+        txtAddress.setText(sh.getHosAddress());
+        txtCity.setText(sh.getCommunity().getCity().getCityName());
+        txtCom.setText(sh.getCommunity().getComName());
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
         // TODO add your handling code here:
+        
+        int slctRowIndex= jTable2.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A City To Create.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable2.getModel();
+        Community com=(Community) model.getValueAt(slctRowIndex,0);
+        
         String hname=txtName.getText();
         String hadd=txtAddress.getText();
         String hcity=txtCity.getText();
-        String hcom=txtCommunity.getText();
+        String hcom=txtCom.getText();
+        
         Hospital newHos=hDirectory.addnewHospital();
         newHos.setHosName(hname);
         newHos.setHosAddress(hadd);
+        newHos.setCommunity(com);
         
-                
+        JOptionPane.showMessageDialog(this, "New Hospital Added");
+        txtName.setText("");
+        txtAddress.setText("");
+        displayTable();
     }//GEN-LAST:event_createBtnActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Delete.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Hospital selectedProfile=(Hospital) model.getValueAt(slctRowIndex,0);
+        
+        hDirectory.deleteHospital(selectedProfile);// to delete the selected profile, need to create a void
+        JOptionPane.showMessageDialog(this, "Selected Profile Deleted.");
+        displayTable();//refresh table
+    }//GEN-LAST:event_delBtnActionPerformed
+
+    private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+        
+        int slctRowIndex2= jTable2.getSelectedRow();
+        if (slctRowIndex2<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A City To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model2= (DefaultTableModel) jTable2.getModel();
+        Community sc2=(Community) model2.getValueAt(slctRowIndex2,0);
+        
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        Hospital sh=(Hospital) model.getValueAt(slctRowIndex,0);
+        sh.setHosName(txtName.getText());
+        sh.setHosAddress(txtAddress.getText());
+        sh.setCommunity(sc2);
+        JOptionPane.showMessageDialog(this, "Hospital Info Updated.");
+        txtName.setText("");
+        txtAddress.setText("");
+        displayTable();
+    }//GEN-LAST:event_editBtnActionPerformed
     private void displayTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         //create a model to display the profile history
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        
         
         for (Hospital ho:hDirectory.getDirectory()){
             Object[] row = new Object[11];
             row[0]=ho;
             //row[1]= pa.getName();
             row[1]= ho.getHosAddress();
-            row[2]= ho.getCity();
-            row[3]= ho.getCommunity();
+            row[2]= ho.getCommunity().getCity().getCityName();
+            row[3]= ho.getCommunity().getComName();
 
+            // use a small array to display each attributes
+            model.addRow(row);
+
+            
+            
+            
+        }
+    }
+    private void displayCom() {
+        DefaultTableModel model= (DefaultTableModel) jTable2.getModel();
+        model.setRowCount(0);
+        //create a model to display the profile history
+        
+        for (Community co:comDirectory.getHistory()){
+            Object[] row = new Object[11];
+            row[0]=co;
+            //row[1]= pa.getName();
+            row[1]= co.getComRoad();
+            row[2]= co.getCity().getCityName();
+            
+            
             // use a small array to display each attributes
             model.addRow(row);
 
@@ -237,15 +380,18 @@ public class admin_hos_panel extends javax.swing.JPanel {
     private javax.swing.JButton delBtn;
     private javax.swing.JButton editBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTable2;
     private javax.swing.JTextField txtAddress;
     private javax.swing.JTextField txtCity;
-    private javax.swing.JTextField txtCommunity;
+    private javax.swing.JTextField txtCom;
     private javax.swing.JTextField txtName;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables

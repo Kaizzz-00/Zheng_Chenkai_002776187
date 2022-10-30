@@ -4,9 +4,8 @@
  */
 package UI;
 
-import BasicModel.Users;
-import BasicModel.userDirectory;
-import java.text.SimpleDateFormat;
+import BasicModel.City;
+import BasicModel.cityDirectory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -14,16 +13,15 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author kai
  */
-public class admin_user_panel extends javax.swing.JPanel {
+public class admin_city_panel extends javax.swing.JPanel {
 
     /**
-     * Creates new form admin_user_panel
+     * Creates new form admin_city_panel
      */
-    userDirectory uDirectory;
-    public admin_user_panel(userDirectory uDirectory) {
+    cityDirectory cDirectory;
+    public admin_city_panel(cityDirectory cDirectory) {
         initComponents();
-        this.uDirectory=uDirectory;
-        txtCurid.setEditable(false);
+        this.cDirectory=cDirectory;
         displayTable();
     }
 
@@ -36,40 +34,27 @@ public class admin_user_panel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel2 = new javax.swing.JLabel();
-        txtName = new javax.swing.JTextField();
-        editBtn = new javax.swing.JButton();
-        delBtn = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
-        createBtn = new javax.swing.JButton();
-        txtPW = new javax.swing.JTextField();
-        viewBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        txtZip = new javax.swing.JTextField();
+        createBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        editBtn = new javax.swing.JButton();
+        txtState = new javax.swing.JTextField();
+        viewBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        delBtn = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        idBox = new javax.swing.JComboBox<>();
-        txtCurid = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
 
-        jLabel2.setText("User Name");
+        jLabel3.setText("State");
 
-        txtName.addActionListener(new java.awt.event.ActionListener() {
+        txtZip.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNameActionPerformed(evt);
+                txtZipActionPerformed(evt);
             }
         });
-
-        editBtn.setText("Upadate");
-        editBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editBtnActionPerformed(evt);
-            }
-        });
-
-        delBtn.setText("Delete");
-
-        jLabel6.setText("User Identity");
 
         createBtn.setText("Create");
         createBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -77,15 +62,6 @@ public class admin_user_panel extends javax.swing.JPanel {
                 createBtnActionPerformed(evt);
             }
         });
-
-        viewBtn.setText("View");
-        viewBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                viewBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("User Password");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -97,19 +73,46 @@ public class admin_user_panel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "User Name", "User Password", "User Identity"
+                "City Name", "State", "Zipcode"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
+        editBtn.setText("Upadate");
+        editBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editBtnActionPerformed(evt);
+            }
+        });
+
+        viewBtn.setText("View");
+        viewBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                viewBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("City Name");
+
+        delBtn.setText("Delete");
+        delBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                delBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel6.setText("Zipcode");
+
+        txtName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNameActionPerformed(evt);
+            }
+        });
+
         jLabel1.setFont(new java.awt.Font("Helvetica Neue", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("View Users Directory");
+        jLabel1.setText("View City Profile");
         jLabel1.setToolTipText("");
-
-        idBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Patient", "Doctor", "System Admin", "Community Admin", "Hospital Admin" }));
-
-        jLabel7.setText("Current Identity");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,8 +132,7 @@ public class admin_user_panel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(editBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8))
+                        .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,18 +141,15 @@ public class admin_user_panel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(jLabel3)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel7))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(jLabel6))
+                                .addGap(39, 39, 39)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtName, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
-                                        .addComponent(txtPW))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(txtCurid, javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(idBox, javax.swing.GroupLayout.Alignment.LEADING, 0, 179, Short.MAX_VALUE)))
+                                        .addComponent(txtState, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                                        .addComponent(txtName)))
                                 .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(19, 19, 19))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,16 +164,12 @@ public class admin_user_panel extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtPW, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtState, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(idBox, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCurid, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 91, Short.MAX_VALUE)
+                    .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(createBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(delBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -184,96 +179,101 @@ public class admin_user_panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+    private void txtZipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtZipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNameActionPerformed
-
-    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
-        int slctRowIndex= jTable1.getSelectedRow();
-        if (slctRowIndex<0)  {
-            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
-            return;
-        }// if nothing was selected, then inform the user
-        
-        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Users su=(Users) model.getValueAt(slctRowIndex,0);
-        
-        txtName.setText(su.getUserName());
-        txtPW.setText(su.getUserPassword());
-        txtCurid.setText(su.getUserIdentity());
-    }//GEN-LAST:event_viewBtnActionPerformed
+    }//GEN-LAST:event_txtZipActionPerformed
 
     private void createBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createBtnActionPerformed
-        String username=txtName.getText();
-        for(Users us:uDirectory.getDirectory())
-        {
-            if (username.equals(us.getUserName()))
-            {
-                JOptionPane.showMessageDialog(this, "Unique UserName Required");
-                txtName.setText("");
-                return;
-            }
+        // TODO add your handling code here:
+        String cname=txtName.getText();
+        String cstate=txtState.getText();
+        
+        String czip=txtZip.getText();
+        if (!(czip.matches("[0-9]+") && czip.length() ==5 )) {
+            JOptionPane.showMessageDialog(this, "Valid Zipcode Required");
+            txtZip.setText(""); // validate the input email
+            return;
         }
-        
-        String userpw=txtPW.getText();
-        Object slctid=idBox.getSelectedItem();
-        
-        Users newU=uDirectory.addnewUser();
-        newU.setUserName(username);
-        newU.setUserPassword(userpw);
-        newU.setUserIdentity(slctid.toString());
-        
+
+        City newCity=cDirectory.addnewCity();
+        newCity.setCityName(cname);
+        newCity.setState(cstate);
+        newCity.setZipcode(czip);
+        JOptionPane.showMessageDialog(this, "New City Added");
         txtName.setText("");
-        txtPW.setText("");
+        txtState.setText("");
+        txtZip.setText("");
         displayTable();
     }//GEN-LAST:event_createBtnActionPerformed
 
     private void editBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBtnActionPerformed
+        // TODO add your handling code here:
         int slctRowIndex= jTable1.getSelectedRow();
         if (slctRowIndex<0)  {
             JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
             return;
         }// if nothing was selected, then inform the user
-        
+
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
-        Users su=(Users) model.getValueAt(slctRowIndex,0);
-        
-        String username=txtName.getText();
-        String userpw=txtPW.getText();
-        Object slctid=idBox.getSelectedItem();
-        
-        for(Users us:uDirectory.getDirectory())
-        {
-            if (username.equals(us.getUserName()) &!username.equals(su.getUserName()))
-            {
-                JOptionPane.showMessageDialog(this, "Unique UserName Required");
-                txtName.setText("");
-                return;
-            }
-        }
-        
-        su.setUserName(username);
-        su.setUserPassword(userpw);
-        su.setUserIdentity(slctid.toString());
-        
+        City sc=(City) model.getValueAt(slctRowIndex,0);
+        sc.setCityName(txtName.getText());
+        sc.setState(txtState.getText());
+        sc.setZipcode(txtZip.getText());
+        JOptionPane.showMessageDialog(this, "City Info Updated.");
         txtName.setText("");
-        txtPW.setText("");
-        txtCurid.setText("");
+        txtState.setText("");
+        txtZip.setText("");
         displayTable();
     }//GEN-LAST:event_editBtnActionPerformed
+
+    private void viewBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Edit.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        City sc=(City) model.getValueAt(slctRowIndex,0);
+
+        txtName.setText(sc.getCityName());
+        txtState.setText(sc.getState());
+        txtZip.setText(sc.getZipcode());
+    }//GEN-LAST:event_viewBtnActionPerformed
+
+    private void delBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBtnActionPerformed
+        // TODO add your handling code here:
+        int slctRowIndex= jTable1.getSelectedRow();
+        if (slctRowIndex<0)  {
+            JOptionPane.showMessageDialog(this, "Please Select A Row To Delete.");
+            return;
+        }// if nothing was selected, then inform the user
+
+        DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
+        City selectedProfile=(City) model.getValueAt(slctRowIndex,0);
+
+        cDirectory.deleteCity(selectedProfile);// to delete the selected profile, need to create a void
+        JOptionPane.showMessageDialog(this, "Selected Profile Deleted.");
+        displayTable();//refresh table
+    }//GEN-LAST:event_delBtnActionPerformed
+
+    private void txtNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNameActionPerformed
     private void displayTable() {
         DefaultTableModel model= (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         //create a model to display the profile history
-        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
         
-        for (Users us:uDirectory.getDirectory()){
+        
+        for (City ci:cDirectory.getHistory()){
             Object[] row = new Object[11];
-            row[0]=us;
+            row[0]=ci;
             //row[1]= pa.getName();
-            row[1]= us.getUserPassword();
-            row[2]= us.getUserIdentity();
-            
+            row[1]= ci.getState();
+            row[2]= ci.getZipcode();
+
             // use a small array to display each attributes
             model.addRow(row);
 
@@ -287,17 +287,15 @@ public class admin_user_panel extends javax.swing.JPanel {
     private javax.swing.JButton createBtn;
     private javax.swing.JButton delBtn;
     private javax.swing.JButton editBtn;
-    private javax.swing.JComboBox<String> idBox;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtCurid;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPW;
+    private javax.swing.JTextField txtState;
+    private javax.swing.JTextField txtZip;
     private javax.swing.JButton viewBtn;
     // End of variables declaration//GEN-END:variables
 }

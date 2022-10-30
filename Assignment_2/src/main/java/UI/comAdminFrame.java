@@ -4,7 +4,9 @@
  */
 package UI;
 
+import BasicModel.cityDirectory;
 import BasicModel.communityDirectory;
+import BasicModel.houseDirectory;
 import BasicModel.userDirectory;
 import Doctor.doctorDirectory;
 import Doctor.encounterHistory;
@@ -20,15 +22,30 @@ public class comAdminFrame extends javax.swing.JFrame {
     /**
      * Creates new form comAdminFrame
      */
-    communityDirectory cDirectory;
+    communityDirectory comDirectory;
     doctorDirectory dDirectory;
     patientDirectory pDirectory;
     hospitalDirectory hDirectory;
     encounterHistory eHistory;
     userDirectory uDirectory;
+    cityDirectory cityDirectory;
+    houseDirectory houseDirectory;
     
-    public comAdminFrame() {
+    public comAdminFrame(patientDirectory pDirectory,doctorDirectory dDirectory,
+                communityDirectory comDirectory,encounterHistory eHistory,hospitalDirectory hDirectory,cityDirectory cityDirectory,houseDirectory houseDirectory) {
         initComponents();
+        this.pDirectory=pDirectory;
+        this.dDirectory=dDirectory;
+        this.comDirectory=comDirectory;
+        this.cityDirectory=cityDirectory;
+        this.eHistory=eHistory;
+        this.houseDirectory=houseDirectory;
+        
+        
+    }
+
+    private comAdminFrame() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 
     /**
@@ -46,6 +63,8 @@ public class comAdminFrame extends javax.swing.JFrame {
         cityBtn = new javax.swing.JButton();
         comBtn = new javax.swing.JButton();
         checkBtn1 = new javax.swing.JButton();
+        HousBtn = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
         workPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,33 +95,50 @@ public class comAdminFrame extends javax.swing.JFrame {
             }
         });
 
+        HousBtn.setText("House");
+        HousBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HousBtnActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Helvetica Neue", 0, 14)); // NOI18N
+        jLabel2.setText("Welcome HosAdmin!");
+
         javax.swing.GroupLayout ctrlPanelLayout = new javax.swing.GroupLayout(ctrlPanel);
         ctrlPanel.setLayout(ctrlPanelLayout);
         ctrlPanelLayout.setHorizontalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(ctrlPanelLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                .addContainerGap(53, Short.MAX_VALUE)
                 .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
-                        .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(checkBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(comBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cityBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(41, 41, 41))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(20, 20, 20))))
+                    .addComponent(jLabel2)
+                    .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                            .addGroup(ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(checkBtn1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(comBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(cityBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(HousBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGap(41, 41, 41))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, ctrlPanelLayout.createSequentialGroup()
+                            .addComponent(jLabel1)
+                            .addGap(20, 20, 20)))))
         );
         ctrlPanelLayout.setVerticalGroup(
             ctrlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ctrlPanelLayout.createSequentialGroup()
-                .addGap(52, 52, 52)
+                .addGap(28, 28, 28)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39)
                 .addComponent(cityBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(108, 108, 108)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(HousBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(58, 58, 58)
                 .addComponent(checkBtn1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(257, Short.MAX_VALUE))
         );
@@ -137,17 +173,23 @@ public class comAdminFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cityBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityBtnActionPerformed
-        // TODO add your handling code here:
+        admin_city_panel Citypanel=new admin_city_panel(cityDirectory);
+        jSplitPane1.setRightComponent(Citypanel);
     }//GEN-LAST:event_cityBtnActionPerformed
 
     private void comBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comBtnActionPerformed
-        admin_com_panel companel=new admin_com_panel(cDirectory);
+        admin_com_panel companel=new admin_com_panel(comDirectory,cityDirectory);
         jSplitPane1.setRightComponent(companel);
     }//GEN-LAST:event_comBtnActionPerformed
 
     private void checkBtn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBtn1ActionPerformed
         this.setVisible(false);
     }//GEN-LAST:event_checkBtn1ActionPerformed
+
+    private void HousBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HousBtnActionPerformed
+        admin_house_panel hupanel=new admin_house_panel(houseDirectory,comDirectory);
+        jSplitPane1.setRightComponent(hupanel);
+    }//GEN-LAST:event_HousBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -185,11 +227,13 @@ public class comAdminFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton HousBtn;
     private javax.swing.JButton checkBtn1;
     private javax.swing.JButton cityBtn;
     private javax.swing.JButton comBtn;
     private javax.swing.JPanel ctrlPanel;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JPanel workPanel;
     // End of variables declaration//GEN-END:variables

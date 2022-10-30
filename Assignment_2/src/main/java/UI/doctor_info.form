@@ -56,8 +56,8 @@
                               </Group>
                               <EmptySpace min="-2" pref="60" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="txtDoctorID" alignment="0" pref="241" max="32767" attributes="0"/>
-                                  <Component id="txtID1" alignment="0" pref="241" max="32767" attributes="0"/>
+                                  <Component id="txtDID" alignment="0" pref="241" max="32767" attributes="0"/>
+                                  <Component id="txtDep" alignment="0" pref="241" max="32767" attributes="0"/>
                                   <Component id="jLabel14" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -114,10 +114,10 @@
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel11" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                          <Component id="txtDoctorID" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
+                          <Component id="txtDID" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="txtID1" min="-2" pref="36" max="-2" attributes="0"/>
+                      <Component id="txtDep" min="-2" pref="36" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="jLabel14" min="-2" pref="152" max="-2" attributes="0"/>
                   </Group>
@@ -235,7 +235,7 @@
         <Property name="text" type="java.lang.String" value="Department"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtDoctorID">
+    <Component class="javax.swing.JTextField" name="txtDID">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel13">
       <Properties>
@@ -245,7 +245,7 @@
         <Property name="text" type="java.lang.String" value="Photo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtID1">
+    <Component class="javax.swing.JTextField" name="txtDep">
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel14">
       <Properties>

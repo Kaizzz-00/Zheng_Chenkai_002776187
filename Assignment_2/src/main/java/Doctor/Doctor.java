@@ -5,6 +5,8 @@
 package Doctor;
 
 import BasicModel.Person;
+import BasicModel.Users;
+import Hospital.Hospital;
 import Patient.Patient;
 import java.util.ArrayList;
 import java.util.Date;
@@ -16,10 +18,26 @@ import java.util.Date;
 public class Doctor extends Person{
     private String doctorID;
     private String Department;
-    private String photo;
+
+    private Hospital hospital;
+    private Users meUser;
+
+    public Users getMeUser() {
+        return meUser;
+    }
+
+    public void setMeUser(Users meUser) {
+        this.meUser = meUser;
+    }
     
-    private ArrayList<Patient> dctPatient; //one doctor should have multiple patients
-    private ArrayList<Encounter> dctEncounter; //one doctor should have multiple encounters
+
+    public Hospital getHospital() {
+        return hospital;
+    }
+
+    public void setHospital(Hospital hospital) {
+        this.hospital = hospital;
+    }
 
     public String getDoctorID() {
         return doctorID;
@@ -39,29 +57,7 @@ public class Doctor extends Person{
         this.Department = Department;
     }
 
-    public String getPhoto() {
-        return photo;
-    }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
-    }
-
-    public ArrayList<Patient> getDctPatient() {
-        return dctPatient;
-    }
-
-    public void setDctPatient(ArrayList<Patient> dctPatient) {
-        this.dctPatient = dctPatient;
-    }
-
-    public ArrayList<Encounter> getDctEncounter() {
-        return dctEncounter;
-    }
-
-    public void setDctEncounter(ArrayList<Encounter> dctEncounter) {
-        this.dctEncounter = dctEncounter;
-    }
     
     @Override
     public String toString(){

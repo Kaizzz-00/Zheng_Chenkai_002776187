@@ -6,7 +6,7 @@ package Doctor;
 
 import Hospital.Hospital;
 import Patient.Patient;
-import Patient.vitalSigns;
+import Patient.vitalSign;
 import java.util.Date;
 
 /**
@@ -17,7 +17,7 @@ public class Encounter {
 
     private Doctor enDoctor; //each encounter has a doctor and a patient 
     private Patient enPatient;
-    private vitalSigns enVital;
+    private vitalSign enVital;
     private Date enDate;
     private Hospital enHospital;
     private String enDiagnose;
@@ -57,11 +57,11 @@ public class Encounter {
         this.enPatient = enPatient;
     }
 
-    public vitalSigns getEnVital() {
+    public vitalSign getEnVital() {
         return enVital;
     }
 
-    public void setEnVital(vitalSigns enVital) {
+    public void setEnVital(vitalSign enVital) {
         this.enVital = enVital;
     }
 
@@ -71,6 +71,10 @@ public class Encounter {
 
     public void setEnDate(Date enDate) {
         this.enDate = enDate;
+    }
+    @Override
+    public String toString(){
+        return this.getEnDoctor().getName();
     }
     
     

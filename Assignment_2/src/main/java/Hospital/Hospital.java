@@ -14,7 +14,6 @@ import BasicModel.Community;
 public class Hospital {
     private String hosName;
     private String hosAddress;
-    private City city;
     private Community community;
 
     public String getHosName() {
@@ -31,14 +30,6 @@ public class Hospital {
 
     public void setHosAddress(String hosAddress) {
         this.hosAddress = hosAddress;
-    }
-
-    public City getCity() {
-        return city;
-    }
-
-    public void setCity(City city) {
-        this.city = city;
     }
 
     public Community getCommunity() {

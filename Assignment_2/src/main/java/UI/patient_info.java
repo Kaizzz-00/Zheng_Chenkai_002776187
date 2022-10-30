@@ -5,6 +5,11 @@
 package UI;
 
 import Patient.Patient;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -168,14 +173,55 @@ public class patient_info extends javax.swing.JPanel {
         txtAddress.setEditable(true);
         txtName.setText(cp.getName());
         txtID.setText(cp.getID());
-        txtDOB.setText(String.valueOf(cp.getDOB()));
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        String stringofDOB = formatter.format(cp.getDOB());
+        txtDOB.setText(stringofDOB);
         txtPhone.setText(cp.getPhone());
         txtEmail.setText(cp.getEmail());
         txtAddress.setText(cp.getAddress());
     }//GEN-LAST:event_viewBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        // TODO add your handling code here:
+        String name= txtName.getText();
+        String id=txtID.getText();
+        String phone=txtPhone.getText();
+        if (phone.length()!=10)
+                {
+                JOptionPane.showMessageDialog(this, "10 Digit Valid Number Required");
+                txtPhone.setText("");
+                return; //validate the input phone
+                }
+        String stringDOB=txtDOB.getText();
+        String email=txtEmail.getText();
+        Integer indexofadd=email.indexOf("@");
+        if (indexofadd<0){
+                JOptionPane.showMessageDialog(this, "Valid Email Address Required");
+                txtEmail.setText(""); // validate the input email
+                return;
+        }
+        
+        
+        SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            cp.setDOB(sdf.parse(stringDOB));
+        } catch (ParseException ex) {
+            JOptionPane.showMessageDialog(this, "Valid Start Date Format Required");
+            Logger.getLogger(admin_pa_panel.class.getName()).log(Level.SEVERE, null, ex);
+            txtDOB.setText("");
+            return;
+        }
+        
+        String address=txtAddress.getText();
+        
+        cp.setName(name);
+        cp.setID(id);
+        cp.setPhone(phone);
+        cp.setEmail(email);
+        
+        cp.setAddress(address);
+        
+        JOptionPane.showMessageDialog(this, "Patient Info Updated.");
+
     }//GEN-LAST:event_updateBtnActionPerformed
 
 

@@ -4,7 +4,11 @@
  */
 package Patient;
 
+import BasicModel.Application;
+import BasicModel.House;
 import BasicModel.Person;
+import BasicModel.Users;
+import Doctor.Doctor;
 import Doctor.Encounter;
 import java.util.Date;
 
@@ -16,8 +20,45 @@ public class Patient extends Person {
     private String patientID;
     private Integer age;
     private String gender;
-    private vitalSigns ownVital; //have their own vitals 
+    private vitalSign ownVital; //have their own vitals 
+    private Doctor ownDoctor;
     private Encounter ownEncounter;// can edit their own encounters
+    private House ownHouse;
+    private Application application;
+    private Users meUser;
+
+    public Users getMeUser() {
+        return meUser;
+    }
+
+    public void setMeUser(Users meUser) {
+        this.meUser = meUser;
+    }
+
+    public Application getApplication() {
+        return application;
+    }
+
+    public void setApplication(Application application) {
+        this.application = application;
+    }
+    
+    
+    public House getOwnHouse() {
+        return ownHouse;
+    }
+
+    public void setOwnHouse(House ownHouse) {
+        this.ownHouse = ownHouse;
+    }
+
+    public Doctor getOwnDoctor() {
+        return ownDoctor;
+    }
+
+    public void setOwnDoctor(Doctor ownDoctor) {
+        this.ownDoctor = ownDoctor;
+    }
 
     public String getPatientID() {
         return patientID;
@@ -47,11 +88,11 @@ public class Patient extends Person {
 
 
 
-    public vitalSigns getOwnVital() {
+    public vitalSign getOwnVital() {
         return ownVital;
     }
 
-    public void setOwnVital(vitalSigns ownVital) {
+    public void setOwnVital(vitalSign ownVital) {
         this.ownVital = ownVital;
     }
 

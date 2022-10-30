@@ -12,7 +12,7 @@ public class Community {
     private String comName;
     private String comRoad;
     private City city;
-
+    
     public String getComName() {
         return comName;
     }
@@ -37,5 +37,9 @@ public class Community {
         this.city = city;
     }
     
+    @Override
+    public String toString(){
+    return comName;
+    }
     
 }

@@ -26,4 +26,15 @@ public class cityDirectory {
         this.history = history;
     }
     
+    public City addnewCity(){
+        City newCity= new City();
+        history.add(newCity);
+        return newCity;
+        // instead of add profile manually to Array, use this method to history and return reference 
+    }
+    
+    public void deleteCity(City selectedCity){
+        history.remove(selectedCity);
+    }// create a void to delete profile
+    
 }
