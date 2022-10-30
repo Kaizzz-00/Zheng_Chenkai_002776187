@@ -8,4 +8,7 @@ User are divided into 3 groups:Patients,Doctors,Admins, and Admins contains SysA
 The data storage of the project is based on ArrayList and passing classes between frames and panels.
 The workFlow is described in the sequence diagram and the class components are displayed in Class diagram
 
+Test for push!
+
+
 Best!
